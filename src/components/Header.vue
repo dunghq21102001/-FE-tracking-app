@@ -4,13 +4,13 @@
       <img src="../assets/headerLogo.png" alt="logo" class="h-14 mr-8 py-1 cursor-pointer" />
       <ul class="flex items-center flex-wrap">
         <li class="
-              cursor-pointer
-              hover:bg-[#2c6d93]
-              h-14
-              px-3
-              text-white text-center
-              leading-[56px]
-                  " v-for="(field, i) in fields" :key="i" :title="field.title" :class="currentTab(field.url)">
+                cursor-pointer
+                hover:bg-[#2c6d93]
+                h-14
+                px-3
+                text-white text-center
+                leading-[56px]
+                    " v-for="(field, i) in fields" :key="i" :title="field.title" :class="currentTab(field.url)">
           <router-link :to="{ name: field.url }">{{ field.name }}</router-link>
         </li>
       </ul>
@@ -36,14 +36,14 @@
           {{ user.email ? user.email : "Guest" }}
         </h1>
         <div v-if="openMenu" class="
-            absolute
-            right-0
-            top-[110%]
-            z-10
-            bg-[#2e698b]
-            rounded-md
-            w-[200px]
-          ">
+              absolute
+              right-0
+              top-[110%]
+              z-10
+              bg-[#2e698b]
+              rounded-md
+              w-[200px]
+            ">
           <ul class="flex flex-col justify-around items-center w-full text-center text-white">
             <li v-if="haveAdminRole" class="hover:bg-gray-400 cursor-pointer my-2 px-1 py-2 w-full">
               <router-link :to="{ name: 'users-management' }">
@@ -124,6 +124,11 @@ export default {
       this.openMenu = false
     },
     checkAdminRole() {
+      if (this.user.roles == null || this.user.roles == undefined) {
+        localStorage.removeItem('token');
+        swal2.error('Token không hợp lệ!', 3000)
+        window.location.href = "/login";
+      }
       const listRoles = this.user.roles
       if (listRoles == null || listRoles == undefined) {
         this.authStore.getProfile()

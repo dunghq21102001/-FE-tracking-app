@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import { defineStore } from 'pinia'
 import user from '../services/User'
 import permission from '../services/permission'

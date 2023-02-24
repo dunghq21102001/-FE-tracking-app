@@ -24,6 +24,11 @@ class trackingNumber {
             .delete(API.tracking + '/' + id)
     }
 
+    static searchTracking(bolId) {
+        return axios
+            .get(API.tracking + '/search', bolId)
+    }
+
     static fields() {
         return [
             {
