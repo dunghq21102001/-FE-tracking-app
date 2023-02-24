@@ -4,22 +4,22 @@
       Theo dõi vận đơn
     </span>
     <div class="
-          bg-white
-          border-t-[4px] border-solid border-blue-400
-          mt-3
-          w-full
-          flex flex-col
-          justify-center
-          p-3
-        ">
+            bg-white
+            border-t-[4px] border-solid border-blue-400
+            mt-3
+            w-full
+            flex flex-col
+            justify-center
+            p-3
+          ">
       <textarea placeholder="Nhập tracking number cần tìm, 1 số trên mỗi dòng . . ." class="
             min-h-[100px]
             w-full
             focus:outline-none
             border-[1px] border-solid border-black/20
             p-2
-          " v-model="searchData"></textarea>
-      <button class="bg-[#00c0ef] mt-2 text-white rounded-md px-3 py-1 w-[100px]">
+          " v-model="formSearch.search"></textarea>
+      <button @click="search" class="bg-[#00c0ef] mt-2 text-white rounded-md px-3 py-1 w-[100px]">
         Theo dõi
       </button>
     </div>
@@ -27,15 +27,23 @@
 </template>
 
 <script>
+import { useTrackingStore } from '../store/tracking'
 export default {
+  setup(){
+    const trackingStore = useTrackingStore()
+    return {trackingStore}
+  },
   data() {
     return {
-      searchData: ''
+      formSearch: {
+        search: ''
+      }
     }
   },
   methods: {
-    search(){
-      console.log(this.searchData);
+     search() {
+      this.trackingStore.setSearchData(this.formSearch.search)
+      this.$router.push({name: 'tracking-number'})
     }
   }
 };

@@ -9,6 +9,10 @@
         border-t-[4px] border-blue-400 border-solid
       ">
       <TrackingHeader></TrackingHeader>
+      <button @click="resetList"
+        class="ml-5 mt-5 rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
+        Đặt lại danh sách
+      </button>
       <div class="w-full overflow-x-scroll">
         <table class="w-full my-12">
           <thead>
@@ -86,7 +90,13 @@
 <script>
 import TrackingHeader from "../components/TrackingHeader.vue";
 import Service from "../services/trackingNumber";
+import { useTrackingStore } from "../store/tracking";
 export default {
+  setup() {
+    const trackingStore = useTrackingStore()
+    const searchState = trackingStore.searchData
+    return { trackingStore, searchState }
+  },
   components: {
     TrackingHeader,
   },
@@ -94,6 +104,8 @@ export default {
     return {
       fields: Service.fields(),
       trackingList: [],
+      tmpList: [],
+      searchTracking: this.searchState
     };
   },
   created() {
@@ -101,9 +113,13 @@ export default {
   },
   methods: {
     async getList() {
-      await Service.getListTracking().then((res) => {
-        this.trackingList = res.data.trackings;
-      });
+      await Service.getListTracking()
+        .then((res) => {
+          this.trackingList = res.data.trackings;
+        })
+        .catch(err => swal2.error(err))
+
+      this.getSearchList()
     },
     trackingActions(type, id, status) {
       if (status != 'new')
@@ -132,8 +148,26 @@ export default {
         default:
           return ''
       }
+    },
+    getSearchList(){
+      this.tmpList = this.trackingList
+      const tmpList = []
+      if(this.searchTracking != null || this.searchTracking!= undefined){
+        this.trackingList.filter(tracking => {
+          if(tracking.bol_id.includes(this.searchTracking)){
+            tmpList.push(tracking)
+          }
+        })
+        this.trackingList = tmpList
+      }
+    },
+    resetList(){
+      this.trackingStore.setSearchData('')
+      this.trackingList = this.tmpList
     }
   },
+  watch: {
+  }
 };
 </script>
 
