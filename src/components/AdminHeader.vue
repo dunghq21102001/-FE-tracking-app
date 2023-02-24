@@ -6,18 +6,6 @@
                 alt="home img" class="h-[200px] mx-auto my-[10px]">
         </router-link>
         <ul class="w-full flex-col">
-            <!-- <router-link :to="{ name: 'users-management' }">
-                <li><span>Users</span><span>⫸</span></li>
-            </router-link>
-            <router-link :to="{ name: 'roles-management' }">
-                <li><span>Roles</span><span>⫸</span></li>
-            </router-link>
-            <router-link :to="{ name: 'permissions-management' }">
-                <li><span>Permissions</span><span>⫸</span></li>
-            </router-link>
-            <router-link :to="{ name: 'assign-roles' }">
-                <li><span>Assign Roles</span><span>⫸</span></li>
-            </router-link> -->
             <router-link :to="{ name: menuItem.url }" v-for="(menuItem, i) in listMenuAdmin" :key="i">
                 <li :title="menuItem.title"><span>{{ menuItem.name }}</span><span>⫸</span></li>
             </router-link>
