@@ -9,9 +9,11 @@
         border-t-[4px] border-blue-400 border-solid
       ">
       <TrackingHeader @searchBOL="searchBOL"></TrackingHeader>
-      <button @click="resetList" class="ml-5 mt-5 rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
+      <div class="flex md:block justify-center">
+        <button @click="resetList" class="ml-0 md:ml-5 mt-5 rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
         Đặt lại danh sách
       </button>
+      </div>
       <div class="w-full overflow-x-scroll">
         <table class="w-full my-12">
           <thead>

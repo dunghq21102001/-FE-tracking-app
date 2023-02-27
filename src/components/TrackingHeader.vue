@@ -1,15 +1,16 @@
 <template>
-  <div class="flex justify-between mx-6 items-center my-3">
-    <span class="text-lg">█║▌ Đăng ký / Quản lý Trackings</span>
+  <div class="flex justify-between mx-6 items-center my-3 flex-col md:flex-row">
+    <span class="text-[14px] md:text-lg">█║▌ Đăng ký / Quản lý Trackings</span>
     <input class="
           border-[1px] border-solid border-black/25
           focus:outline-none
           p-2
           w-[150px]
+          mt-3 md:mt-0
         " type="text" placeholder="Lọc nhanh ..." />
   </div>
   <hr />
-  <div class="flex justify-around items-end mt-3">
+  <div class="flex justify-around items-center md:items-end mt-3 flex-wrap flex-col md:flex-row">
     <div class="flex flex-col">
       <span>Mã Vận Đơn</span>
       <input class="
@@ -22,19 +23,21 @@
     <div class="flex flex-col">
       <span>Từ Ngày</span>
       <input class="
+            mt-3 md:mt-0
             border-[1px] border-solid border-black/25
             focus:outline-none
             p-2
-            w-[150px]
+            w-[200px] md:w-[150px]
           " type="date" v-model="formSearch.from_date" />
     </div>
     <div class="flex flex-col">
       <span>Đến Ngày</span>
       <input class="
+            mt-3 md:mt-0
             border-[1px] border-solid border-black/25
             focus:outline-none
             p-2
-            w-[150px]
+            w-[200px] md:w-[150px]
           " type="date" v-model="formSearch.to_date" />
     </div>
     <button @click="search" class="
@@ -45,10 +48,12 @@
           py-1
           hover:bg-blue-400
           h-10
+          mt-3 md:mt-0
+          w-[200px] md:w-[80px]
         ">
       Tìm
     </button>
-    <div class="border-l-[2px] border-solid border-gray-300 h-10"></div>
+    <div class=" hidden md:block border-l-[2px] border-solid border-gray-300 h-10"></div>
     <router-link :to="{name: 'tracking-number-create'}">
       <button class="
           rounded-sm
@@ -58,7 +63,9 @@
           py-1
           hover:bg-blue-400
           h-10
-          ml-6
+          ml-0 md:ml-6
+          w-[200px] md:w-[155px]
+          mt-3 md:mt0
         ">
         █║▌ Đăng ký
       </button>

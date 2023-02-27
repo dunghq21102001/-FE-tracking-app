@@ -1,16 +1,39 @@
 <template>
   <div class="w-full bg-[#3c8dbc] flex justify-between h-14 items-center px-5">
     <div class="flex">
-      <img src="../assets/headerLogo.png" alt="logo" class="h-14 mr-8 py-1 cursor-pointer" />
-      <ul class="flex items-center flex-wrap">
+      <!-- <img src="../assets/headerLogo.png" alt="logo" class="h-14 mr-8 py-1 cursor-pointer" /> -->
+
+      <!-- responsive menu -->
+      <div class="block md:hidden">
+        <v-menu  transition="scale-transition">
+          <template v-slot:activator="{ props }">
+            <v-btn color="primary" v-bind="props">
+              ☰
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="(field, i) in fields" 
+            :key="i" >
+            <router-link :to="{ name: field.url }">
+              <v-list-item-title>
+                  {{ field.name }}
+                </v-list-item-title>
+              </router-link>  
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+
+      <!-- desktop menu -->
+      <ul class="hidden md:flex items-center flex-wrap">
         <li class="
-                cursor-pointer
-                hover:bg-[#2c6d93]
-                h-14
-                px-3
-                text-white text-center
-                leading-[56px]
-                    " v-for="(field, i) in fields" :key="i" :title="field.title" :class="currentTab(field.url)">
+          cursor-pointer
+          hover:bg-[#2c6d93]
+          h-14
+          px-3
+          text-white text-center
+          leading-[56px]
+              " v-for="(field, i) in fields" :key="i" :title="field.title" :class="currentTab(field.url)">
           <router-link :to="{ name: field.url }">{{ field.name }}</router-link>
         </li>
       </ul>

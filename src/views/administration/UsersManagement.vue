@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="bg-[#289ae7] text-center text-2xl text-white py-4">Users Management</div>
+        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Users Management</div>
         <button @click="showCreate" class=" m-4 rounded-lg text-white px-7 py-1 max-h-10 bg-[#438aab]">
             😃 Tạo User
         </button>
@@ -93,7 +93,7 @@
                             flex
                             justify-center
                             items-center">
-            <div class="w-[60%] bg-white rounded-lg p-6 h-[90vh] overflow-y-scroll">
+            <div class="w-[90%] md:w-[60%] bg-white rounded-lg p-6 h-[90vh] overflow-y-scroll">
                 <span @click="close" class="cursor-pointer">❌</span>
                 <Form class="flex flex-col justify-around items-center" @submit="submitForm">
                     <div class="flex flex-col mb-4">
@@ -102,7 +102,7 @@
                             <ErrorMessage name="email" class="text-red-500"/>
                         </label>
                         <Field name="email" type="text" class="
-                            w-[320px]
+                            w-[240px] md:w-[320px]
                             mx-3
                             border-[1px] border-solid border-gray-300
                             focus:outline-none
@@ -116,7 +116,7 @@
                             <ErrorMessage name="password" class="text-red-500"/>
                         </label>
                         <Field name="password" type="text" class="
-                            w-[320px]
+                            w-[240px] md:w-[320px]
                             mx-3
                             border-[1px] border-solid border-gray-300
                             focus:outline-none
@@ -124,14 +124,14 @@
                             " :id="FormData.password" v-model="FormData.password" 
                             :rules="validatePassword"/>
                     </div>
-                    <div class="flex flex-wrap pb-4" v-if="isCreate">
+                    <div class="flex flex-wrap pb-4 w-full" v-if="isCreate">
                         <span>Roles <span class="text-red-500">*</span>:</span>
                         <div class="flex mx-4" v-for="(role, i) in listRoles" :key="role.id">
                             <input :id="role.name" :value="role.id" v-model="FormData.roles" type="checkbox"><label
                                 :for="role.name">{{ role.name }}</label>
                         </div>
                     </div>
-                    <div class="flex flex-wrap pb-4" v-if="isUpdate && detailUser">
+                    <div class="flex flex-wrap pb-4 w-full" v-if="isUpdate && detailUser">
                         <span>Roles <span class="text-red-500">*</span>:</span>
                         <div class="flex mx-4" v-for="(role, i) in listRoles" :key="role.id">
                             <input :id="role.name" :value="role.id" v-model="FormData.roles" type="checkbox"><label
@@ -308,8 +308,10 @@ td {
 /* Adopt bootstrap pagination stylesheet. */
   
   /* Write your own CSS for pagination */
-  /* .pagination {
+  
+  .pagination {
+    justify-content: space-around;
   }
-  .page-item {
+  /* .page-item {
   } */
 </style>
