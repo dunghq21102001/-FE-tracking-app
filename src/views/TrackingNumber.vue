@@ -14,14 +14,14 @@
         Đặt lại danh sách
       </button>
       </div>
-      <div class="w-full overflow-x-scroll">
+      <div class="w-full overflow-x-scroll h-[65vh]">
         <table class="w-full my-12">
-          <thead>
+          <thead class="sticky top-0 left-0 bg-[#3c8dbc] text-white">
             <tr class="text-center">
-              <th class="font-bold" v-for="(field, index) in fields" :key="index" :title="field.title">
+              <th class="font-bold py-3" v-for="(field, index) in fields" :key="index" :title="field.title">
                 {{ field.name }}
               </th>
-              <th class="font-bold">Hành Động</th>
+              <th class="font-bold py-3">Hành Động</th>
             </tr>
           </thead>
           <tbody>
@@ -36,9 +36,11 @@
                 <div class="w-[150px]">{{ t.delivery_note }}</div>
               </td>
               <td>
-                <div class="w-[150px] uppercase text-center cursor-pointer" :class="getStatusColor(t.status)">
-                  <span>{{ t.status }}</span>
-                </div>
+                <router-link :to="{name: 'eventTrackingDetail', params: {id: t.id}}">
+                  <div class="w-[150px] uppercase text-center cursor-pointer" :class="getStatusColor(t.status)">
+                    <span>{{ t.status }}</span>
+                  </div>
+                </router-link>
               </td>
               <td>
                 <div class="w-[150px]">{{ t.receiver.last_name }}</div>
@@ -159,6 +161,12 @@ export default {
           return commonCss + ' bg-orange-600'
         case 'received':
           return commonCss + ' bg-green-500'  
+        case 'shipping':
+          return commonCss + ' bg-blue-400'  
+        case 'flying':
+          return commonCss + ' bg-red-700' 
+        case 'Processing':
+          return commonCss + ' bg-pink-600'    
         case 'canceled':
           return commonCss + ' bg-gray-500'
         default:
