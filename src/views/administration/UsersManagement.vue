@@ -155,14 +155,12 @@
 import service from '../../services/User'
 import rolesService from '../../services/role'
 import { Form, Field, ErrorMessage } from "vee-validate";
-import Pagination from '../../components/Pagination.vue'
 import Paginate from 'vuejs-paginate-next';
 export default {
     components: {
         Form,
         Field,
         ErrorMessage,
-        Pagination,
         paginate: Paginate,
     },
     data() {
@@ -258,9 +256,6 @@ export default {
                 password: '',
                 roles: []
             }
-        },
-        onPageChange(page) {
-            this.currentPage = page;
         },
         async clickCallback (pageNum) {
         await axios.get(API.user + `/listUsers?page=${pageNum}`)
