@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="bg-[#289ae7] text-center text-2xl text-white py-4">Permissions Management</div>
+        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Permissions Management</div>
         <button @click="showCreate" class=" m-4 rounded-lg text-white px-7 py-1 max-h-10 bg-[#438aab]">
             🚫 Tạo quyền
         </button>
@@ -25,11 +25,12 @@
                 flex
                 justify-center
                 items-center">
-            <div class="w-[60%] bg-white rounded-lg p-6 h-[40vh] overflow-y-scroll">
+            <div class="w-[90%] md:w-[60%] bg-white rounded-lg p-6 h-[40vh] overflow-y-scroll">
                 <span @click="close" class="cursor-pointer">❌</span>
                 <Form class="flex flex-col justify-around items-center" @submit="submitForm">
                     <span>Tên quyền <span class="text-red-500">(*)</span></span>
-                    <Field name="role" class="w-[320px]
+                    <Field name="role" class="
+                        w-[240px] md:w-[320px]
                         mx-3
                         border-[1px] border-solid border-gray-300
                         focus:outline-none

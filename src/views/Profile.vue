@@ -28,7 +28,8 @@
           name="first_name"
           type="text"
           class="
-            w-[320px]
+            w-[240px]
+            sm:w-[320px]
             mx-3
             border-[1px] border-solid border-gray-300
             focus:outline-none
@@ -46,7 +47,8 @@
           name="last_name"
           type="text"
           class="
-            w-[320px]
+            w-[240px]
+            sm:w-[320px]
             mx-3
             border-[1px] border-solid border-gray-300
             focus:outline-none
@@ -63,7 +65,8 @@
           disabled
           type="text"
           class="
-            w-[320px]
+            w-[240px]
+            sm:w-[320px]
             mx-3
             border-[1px] border-solid border-gray-300
             focus:outline-none
@@ -84,7 +87,8 @@
           name="phone1"
           type="text"
           class="
-            w-[320px]
+            w-[240px]
+            sm:w-[320px]
             mx-3
             border-[1px] border-solid border-gray-300
             focus:outline-none
@@ -104,7 +108,8 @@
           name="phone2"
           type="text"
           class="
-            w-[320px]
+            w-[240px]
+            sm:w-[320px]
             mx-3
             border-[1px] border-solid border-gray-300
             focus:outline-none
@@ -123,7 +128,8 @@
           name="address"
           type="text"
           class="
-            w-[320px]
+            w-[240px]
+            sm:w-[320px]
             mx-3
             border-[1px] border-solid border-gray-300
             focus:outline-none
@@ -141,7 +147,8 @@
           name="city"
           type="text"
           class="
-            w-[320px]
+            w-[240px]
+            sm:w-[320px]
             mx-3
             border-[1px] border-solid border-gray-300
             focus:outline-none
@@ -159,7 +166,8 @@
           name="country"
           type="text"
           class="
-            w-[320px]
+            w-[240px]
+            sm:w-[320px]
             mx-3
             border-[1px] border-solid border-gray-300
             focus:outline-none

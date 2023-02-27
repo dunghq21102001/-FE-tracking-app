@@ -81,14 +81,14 @@
             justify-center
             items-center
           ">
-        <div class="w-[60%] bg-white rounded-lg p-6 h-[90vh] overflow-y-scroll">
+        <div class="w-[90%] md:w-[60%] bg-white rounded-lg p-6 h-[90vh] overflow-y-scroll">
           <span @click="isShow = false" class="cursor-pointer">❌</span>
           <Form class="flex flex-col justify-around items-center" @submit="createReceiver">
             <div class="flex flex-col mb-4">
               <label :title="formSubmit.first_name" :for="formSubmit.first_name">
                 Họ <span class="text-red-500">*</span></label>
               <Field name="first_name" type="text" class="
-                    w-[320px]
+                    w-[240px] md:w-[320px]
                     mx-3
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
@@ -99,7 +99,7 @@
               <label :title="formSubmit.last_name" :for="formSubmit.last_name">
                 Tên <span class="text-red-500">*</span></label>
               <Field name="last_name" type="text" class="
-                    w-[320px]
+                    w-[240px] md:w-[320px]
                     mx-3
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
@@ -112,7 +112,7 @@
                 <ErrorMessage name="phone1" class="text-red-500" />
               </label>
               <Field name="phone1" type="text" class="
-                    w-[320px]
+                    w-[240px] md:w-[320px]
                     mx-3
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
@@ -125,7 +125,7 @@
                 <ErrorMessage name="phone2" class="text-red-500" />
               </label>
               <Field name="phone2" type="text" class="
-                    w-[320px]
+                    w-[240px] md:w-[320px]
                     mx-3
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
@@ -136,7 +136,7 @@
               <label :title="formSubmit.address" :for="formSubmit.address">
                 Địa Chỉ <span class="text-red-500">*</span></label>
               <Field name="address" type="text" class="
-                    w-[320px]
+                    w-[240px] md:w-[320px]
                     mx-3
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
@@ -147,7 +147,7 @@
               <label :title="formSubmit.city" :for="formSubmit.city">
                 Thành Phố <span class="text-red-500">*</span></label>
               <Field name="city" type="text" class="
-                    w-[320px]
+                    w-[240px] md:w-[320px]
                     mx-3
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
@@ -158,7 +158,7 @@
               <label :title="formSubmit.country" :for="formSubmit.country">
                 Quốc Gia <span class="text-red-500">*</span></label>
               <Field name="country" type="text" class="
-                    w-[320px]
+                    w-[240px] md:w-[320px]
                     mx-3
                     border-[1px] border-solid border-gray-300
                     focus:outline-none

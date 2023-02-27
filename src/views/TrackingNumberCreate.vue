@@ -25,7 +25,7 @@
             </button>
           </router-link>
         </span>
-        <div class="w-full flex flex-wrap justify-between mt-3">
+        <div class="w-full flex flex-wrap justify-between mt-3 items-end md:items-start">
           <div class="flex flex-col w-[25%]">
             <span>Nguời Gửi</span>
             <input type="text" disabled
@@ -71,7 +71,7 @@
             {{ item.last_name }}
           </option>
         </select>
-        <div v-if="isOpen && currentReceiver" class="w-full flex flex-wrap justify-between mt-3">
+        <div v-if="isOpen && currentReceiver" class="w-full flex flex-wrap justify-between mt-3 items-end md:items-start">
           <div class="flex flex-col w-[25%]">
             <span>Nguời Nhận</span>
             <input type="text" disabled
@@ -109,7 +109,7 @@
           border-[1px] border-solid border-black/20
           p-2 mt-3" placeholder="Note ..." v-model="formCreate.note">
       </div>
-      <div class="flex w-[400px] justify-around mt-7 mb-4">
+      <div class="flex w-full md:w-[400px] flex-wrap justify-around mt-7 mb-4">
         <button class="rounded-sm text-white px-7 py-1 max-h-10 bg-[#3c8dbc]
                     border-[1px] border-solid border-[#367fa9]" @click="createTracking">
           Đăng Ký

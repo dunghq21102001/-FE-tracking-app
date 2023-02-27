@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="bg-[#289ae7] text-center text-2xl text-white py-4">Assign Roles</div>
+        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Assign Roles</div>
         <select name="" id="" class="m-5 w-[200px] py-2 text-center border-black border-[2px] rounded-lg border-solid"
             v-model="selectedRole">
             <option disabled value="">Chọn vai trò</option>
@@ -9,7 +9,7 @@
             </option>
         </select>
 
-        <div v-if="selectedRole" class="flex justify-start ml-5 w-full overflow-x-scroll">
+        <div v-if="selectedRole" class="flex justify-start ml-5 overflow-x-scroll">
             <span class="mr-3 hover:bg-[#289ae7] p-2 cursor-pointer rounded-lg"
                 :class="selectedPerName == perName ? 'active' : ''" v-for="(perName, i) in permissionNameList" :key="i"
                 @click="getCurrentPermission(perName)">

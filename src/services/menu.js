@@ -9,6 +9,7 @@ export default class MenuFunc {
     }
     static getListMenuAdmin() {
         return [
+            { name: 'Trang Chủ', title: 'Trang Chủ', url: 'home' },
             { name: 'Người Dùng', title: 'Quản Lý Người Dùng', url: 'users-management' },
             { name: 'Vai Trò', title: 'Quản Lý Vai Trò', url: 'roles-management' },
             { name: 'Quyền', title: 'Quản Lý Quyền', url: 'permissions-management' },
