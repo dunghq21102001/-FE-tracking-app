@@ -10,4 +10,5 @@ export default class URL_API {
     static guild = this.BASE_URL + '/guild'
     static receiver = this.BASE_URL + '/receiver'
     static tracking = this.BASE_URL + '/tracking'
+    static request = this.BASE_URL + '/request'
 }

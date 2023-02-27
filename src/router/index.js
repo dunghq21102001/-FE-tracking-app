@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import EventTracking from '../views/EventTracking.vue'
+import EventTrackingDetail from '../views/EventTrackingDetail.vue'
 import Services from '../views/Services.vue'
 import Guild from '../views/Guild.vue'
 import Contact from '../views/Contact.vue'
@@ -66,6 +67,14 @@ const router = createRouter({
       path: '/event-tracking',
       name: 'eventTracking',
       component: EventTracking,
+      meta: {
+        middleware: auth
+      }
+    },
+    {
+      path: '/event-tracking/detail/:id',
+      name: 'eventTrackingDetail',
+      component: EventTrackingDetail,
       meta: {
         middleware: auth
       }

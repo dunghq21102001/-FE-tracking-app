@@ -173,8 +173,8 @@ export default {
             isUpdate: false,
             isShow: false,
             page: 1,
-            perPage: '',
             totalPage: 0,
+            perPage: '',
             FormData: {
                 email: '',
                 password: '',

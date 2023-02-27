@@ -166,8 +166,8 @@ export default {
       await this.authStore.getProfile();
       this.isLoading = false;
 
-      if (this.authStore.getToken != null) {
-        swal2.success("Đăng nhập thành công", 2000);
+      if (this.authStore.token != null) {
+        // swal2.success("Đăng nhập thành công", 2000);
         this.$router.push({ name: "home" });
       }
     },
