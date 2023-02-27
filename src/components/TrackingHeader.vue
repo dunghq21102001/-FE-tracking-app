@@ -17,7 +17,7 @@
             focus:outline-none
             p-2
             w-[200px]
-          " type="text" placeholder="Nhập mã vận đơn để tìm kiếm ..." />
+          " type="text" placeholder="Nhập mã vận đơn để tìm kiếm ..." v-model="formSearch.bol_code"/>
     </div>
     <div class="flex flex-col">
       <span>Từ Ngày</span>
@@ -67,7 +67,13 @@
 </template>
 
 <script>
+import { useTrackingStore } from '../store/tracking';
 export default {
+  emits: ["searchBOL"],
+  setup(){
+    const trackingStore = useTrackingStore()
+    return {trackingStore}
+  },
   data() {
     return {
       formSearch: {
@@ -83,33 +89,18 @@ export default {
   },
   methods: {
     search() {
-      console.log(this.formSearch);
-    },
+      if(this.formSearch.from_date > this.formSearch.to_date){
+        swal2.error('Ngày sau phải lớn hơn ngày đầu!', 3000)
+        return
+      }
+      this.$emit('searchBOL', this.formSearch)
 
-    getFormSearch() {
-      // const today = new Date();
-      // const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
-      // const formatFirstDay =
-      //   firstDay.getFullYear() +
-      //   "-" +
-      //   ((firstDay.getMonth() + 1).length != 2
-      //     ? "0" + (firstDay.getMonth() + 1)
-      //     : firstDay.getMonth() + 1) +
-      //   "-" +
-      //   (firstDay.getDate().length != 2
-      //     ? "0" + firstDay.getDate()
-      //     : firstDay.getDate());
-      // const formatToday =
-      //   today.getFullYear() +
-      //   "-" +
-      //   ((today.getMonth() + 1).length != 2
-      //     ? "0" + (today.getMonth() + 1)
-      //     : today.getMonth() + 1) +
-      //   "-" +
-      //   (today.getDate().length != 2 ? "0" + today.getDate() : today.getDate());
-
-      // this.formSearch.from_date = formatFirstDay;
-      // this.formSearch.to_date = formatToday;
+      this.formSearch = {
+        search_data: "",
+        bol_code: "",
+        from_date: "",
+        to_date: "",
+      }
     },
   },
 };

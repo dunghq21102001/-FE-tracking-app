@@ -8,9 +8,8 @@
         bg-white
         border-t-[4px] border-blue-400 border-solid
       ">
-      <TrackingHeader></TrackingHeader>
-      <button @click="resetList"
-        class="ml-5 mt-5 rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
+      <TrackingHeader @searchBOL="searchBOL"></TrackingHeader>
+      <button @click="resetList" class="ml-5 mt-5 rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
         Đặt lại danh sách
       </button>
       <div class="w-full overflow-x-scroll">
@@ -71,6 +70,10 @@
         </table>
       </div>
 
+      <paginate v-model="page" :page-count="totalPage" :page-range="3" :margin-pages="2" :click-handler="changePage"
+        :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'">
+      </paginate>
+
       <div class="
           w-full
           bg-[#00c0ef]
@@ -79,7 +82,7 @@
           py-6
           px-2
           mt-6
-        ">
+                ">
         ⚠️ Để Xem chi tiết Trạng Thái Tracking. Quý Khách hãy click vào ô Trạng
         Thái của mỗi dòng Tracking Number bên trên!
       </div>
@@ -91,6 +94,7 @@
 import TrackingHeader from "../components/TrackingHeader.vue";
 import Service from "../services/trackingNumber";
 import { useTrackingStore } from "../store/tracking";
+import Paginate from 'vuejs-paginate-next';
 export default {
   setup() {
     const trackingStore = useTrackingStore()
@@ -99,13 +103,20 @@ export default {
   },
   components: {
     TrackingHeader,
+    paginate: Paginate,
   },
   data() {
     return {
       fields: Service.fields(),
       trackingList: [],
       tmpList: [],
-      searchTracking: this.searchState
+      tmpTotalPage: 0,
+      searchTracking: this.searchState,
+      page: 1,
+      // perPage: '',
+      totalPage: 0,
+      fromDate: null,
+      toDate: null
     };
   },
   created() {
@@ -115,7 +126,8 @@ export default {
     async getList() {
       await Service.getListTracking()
         .then((res) => {
-          this.trackingList = res.data.trackings;
+          this.trackingList = res.data.data;
+          this.totalPage = res.data.last_page
         })
         .catch(err => swal2.error(err))
 
@@ -143,30 +155,63 @@ export default {
       switch (status) {
         case 'new':
           return commonCss + ' bg-orange-600'
+        case 'received':
+          return commonCss + ' bg-green-500'  
         case 'canceled':
           return commonCss + ' bg-gray-500'
         default:
           return ''
       }
     },
-    getSearchList(){
+    async changePage(pageNum) {
+      await axios.get(API.tracking + `?page=${pageNum}`)
+        .then(res => this.trackingList = res.data.data)
+    },
+    async getSearchList() {
       this.tmpList = this.trackingList
-      const tmpList = []
-      if(this.searchTracking != null || this.searchTracking!= undefined){
-        this.trackingList.filter(tracking => {
-          if(tracking.bol_id.includes(this.searchTracking)){
-            tmpList.push(tracking)
-          }
-        })
+      this.tmpTotalPage = this.totalPage
+      let tmpList = []
+      if (this.searchTracking != null
+        && this.searchTracking != ''
+        || (this.fromDate != null && this.toDate != null) ) {
+        await axios.get(API.tracking + '/search',
+          {
+            params: {
+              searchData: this.searchTracking,
+              fromDate: this.fromDate,
+              toDate: this.toDate
+            }
+          })
+          .then(res => {
+            tmpList = res.data.data
+            this.totalPage = res.data.last_page
+            this.page = 1
+          })
         this.trackingList = tmpList
       }
     },
-    resetList(){
-      this.trackingStore.setSearchData('')
-      this.trackingList = this.tmpList
+    resetList() {
+      this.trackingStore.setSearchData(null)
+      this.searchTracking = null
+      // this.trackingList = this.tmpList
+      // this.totalPage = this.tmpTotalPage
+      this.fromDate = null
+      this.fromDate = null
+      this.getList()
+      this.page = 1
+    },
+    searchBOL(dataSearch) {
+      this.fromDate = dataSearch.from_date
+      this.toDate = dataSearch.to_date
+      this.searchTracking = dataSearch.bol_code
+      // this.getList()
+      this.getSearchList()
     }
   },
   watch: {
+    // 'searchTracking'(){
+    //   this.getList()
+    // }
   }
 };
 </script>
@@ -176,5 +221,10 @@ td {
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.pagination {
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 </style>

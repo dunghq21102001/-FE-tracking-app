@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 export const useTrackingStore = defineStore('tracking', {
     state: () => ({
-        searchData: '',
+        searchData: null,
     }),
     getters: {
         getSearchValue: state => {
