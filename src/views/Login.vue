@@ -7,7 +7,7 @@
           items-center
           justify-around
           w-[90%]
-          sm:w-[40%]
+          sm:w-[25%]
           bg-black/75
           py-3
           rounded-lg
@@ -73,7 +73,7 @@
           items-center
           justify-around
           w-[90%]
-          sm:w-[40%]
+          sm:w-[25%]
           bg-black/75
           py-3
           rounded-lg

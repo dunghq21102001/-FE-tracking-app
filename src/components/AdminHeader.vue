@@ -2,7 +2,7 @@
     <div class="hidden shadow-custom w-[250px] h-[100vh] overflow-y-scroll fixed top-0 left-0 bg-[#101a32] text-white md:block">
         <router-link :to="{ name: 'home' }">
             <img src="https://movingboxesdirect.co.uk/wp-content/uploads/2017/03/box-1297327_1280.png"
-                alt="home img" class="h-[200px] mx-auto my-[10px]">
+                alt="home img" class="h-[120px] mx-auto my-[10px]">
         </router-link>
         <ul class="w-full flex-col">
             <router-link :to="{ name: menuItem.url }" v-for="(menuItem, i) in listMenuAdmin" :key="i">

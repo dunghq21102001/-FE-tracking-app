@@ -13,14 +13,31 @@ import func from './ultilities/func'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import 'vuetify/styles'
+import {createI18n} from 'vue-i18n'
 import { createVuetify } from 'vuetify'
 import vueClickOutsideElement from 'vue-click-outside-element'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import Paginate from "vuejs-paginate-next";
 
+const messages = {
+  en: {
+    message: {
+      hello: 'hello world'
+    }
+  },
+  kr: {
+    message: {
+      hello: '안녕하세요, 세계'
+    }
+  }
+}
 
-
+const i18n = createI18n({
+  locale: 'kr', 
+  fallbackLocale: 'en', 
+  messages,
+})
 
 window.API = API
 window.axios = axios
@@ -48,6 +65,7 @@ app.use(pinia)
 app.use(vueClickOutsideElement)
 app.use(VueSweetalert2)
 app.use(Paginate)
+app.use(i18n)
 
 
 app.mount('#app')
