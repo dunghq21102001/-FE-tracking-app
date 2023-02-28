@@ -11,4 +11,5 @@ export default class URL_API {
     static receiver = this.BASE_URL + '/receiver'
     static tracking = this.BASE_URL + '/tracking'
     static request = this.BASE_URL + '/request'
+    static language = this.BASE_URL + '/language'
 }

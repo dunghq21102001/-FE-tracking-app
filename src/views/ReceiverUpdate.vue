@@ -17,7 +17,7 @@
             <Form class="flex flex-col mx-auto justify-around items-center w-[60%]" @submit="updateReceiver">
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.first_name" :for="formSubmit.first_name">
-                        Họ <span class="text-red-500">*</span></label>
+                        Họ</label>
                     <Field name="first_name" type="text" class="
                           w-full
                           mx-3
@@ -28,18 +28,21 @@
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.last_name" :for="formSubmit.last_name">
-                        Tên <span class="text-red-500">*</span></label>
+                        Tên <span class="text-red-500">*</span>
+                        <ErrorMessage class="text-red-500" name="last_name"/>
+                    </label>
                     <Field name="last_name" type="text" class="
                           w-full
                           mx-3
                           border-[1px] border-solid border-gray-300
                           focus:outline-none
                           p-3
-                        " :id="formSubmit.last_name" v-model="formSubmit.last_name" />
+                        " :id="formSubmit.last_name" v-model="formSubmit.last_name" 
+                        :rules="validateEmpty"/>
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.phone1" :for="formSubmit.phone1">
-                        Số ĐT 1 <span class="text-red-500">*</span>
+                        Số ĐT 1 
                         <ErrorMessage name="phone1" class="text-red-500" />
                     </label>
                     <Field name="phone1" type="text" class="
@@ -52,7 +55,7 @@
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.phone2" :for="formSubmit.phone2">
-                        Số ĐT 2 <span class="text-red-500">*</span>
+                        Số ĐT 2 
                         <ErrorMessage name="phone2" class="text-red-500" />
                     </label>
                     <Field name="phone2" type="text" class="
@@ -65,36 +68,42 @@
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.address" :for="formSubmit.address">
-                        Địa Chỉ <span class="text-red-500">*</span></label>
+                        Địa Chỉ <span class="text-red-500">*</span>
+                        <ErrorMessage class="text-red-500" name="address"/></label>
                     <Field name="address" type="text" class="
                           w-full
                           mx-3
                           border-[1px] border-solid border-gray-300
                           focus:outline-none
                           p-3
-                        " :id="formSubmit.address" v-model="formSubmit.address" />
+                        " :id="formSubmit.address" v-model="formSubmit.address" 
+                        :rules="validateEmpty"/>
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.city" :for="formSubmit.city">
-                        Thành Phố <span class="text-red-500">*</span></label>
+                        Thành Phố <span class="text-red-500">*</span>
+                        <ErrorMessage class="text-red-500" name="city"/></label>
                     <Field name="city" type="text" class="
                           w-full
                           mx-3
                           border-[1px] border-solid border-gray-300
                           focus:outline-none
                           p-3
-                        " :id="formSubmit.city" v-model="formSubmit.city" />
+                        " :id="formSubmit.city" v-model="formSubmit.city" 
+                        :rules="validateEmpty"/>
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.country" :for="formSubmit.country">
-                        Quốc Gia <span class="text-red-500">*</span></label>
+                        Quốc Gia <span class="text-red-500">*</span>
+                        <ErrorMessage class="text-red-500" name="country"/></label>
                     <Field name="country" type="text" class="
                           w-full
                           mx-3
                           border-[1px] border-solid border-gray-300
                           focus:outline-none
                           p-3
-                        " :id="formSubmit.country" v-model="formSubmit.country" />
+                        " :id="formSubmit.country" v-model="formSubmit.country" 
+                        :rules="validateEmpty"/>
                 </div>
                 <div class="w-[250px] flex justify-around">
                     <button type="submit" class="rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
@@ -153,6 +162,12 @@ export default {
                 return "(Số ĐT đã nhập không đúng định dạng)";
             }
             // All is good
+            return true;
+        },
+        validateEmpty(value) {
+            if(!value) {
+                return 'Không được bỏ trống trường này'
+            }
             return true;
         },
         async updateReceiver() {
