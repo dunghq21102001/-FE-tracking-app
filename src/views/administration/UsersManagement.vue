@@ -1,7 +1,7 @@
 <template>
     <div class="w-full">
         <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Users Management</div>
-        <button @click="showCreate" class=" m-4 rounded-lg text-white px-7 py-1 max-h-10 bg-[#438aab]">
+        <button @click="showCreate" class=" m-2 md:m-4 rounded-lg text-white px-7 py-1 max-h-10 bg-[#438aab]">
             😃 Tạo User
         </button>
         <div class="overflow-x-scroll w-full h-[65vh]">
@@ -228,6 +228,7 @@ export default {
                 .then(res => {
                     this.close()
                     this.getList()
+                    this.page = 1
                     swal2.success('Tạo mới người dùng thành công')
                 })
                 .catch(err => swal2(err))

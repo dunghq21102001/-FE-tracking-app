@@ -2,9 +2,9 @@
     <div class="w-full">
         <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Request Management</div>
 
-        <div class="w-full overflow-y-scroll h-[75vh]">
+        <div class="w-full overflow-y-scroll h-[70vh]">
             <table class="w-full">
-                <thead>
+                <thead class="sticky top-0 left-0 bg-[#f37070]">
                     <tr class="text-center">
                         <th :title="field.title" v-for="(field, i) in fields" :key="i">
                             {{ field.name }}
@@ -97,5 +97,8 @@ export default {
 <style scoped>
 .pagination {
     justify-content: space-around;
+}
+th {
+    padding: 5px 0;
 }
 </style>

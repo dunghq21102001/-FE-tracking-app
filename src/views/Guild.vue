@@ -29,7 +29,7 @@ export default {
   methods: {
     async getList() {
       await service.getListGuild().then((res) => {
-        this.listGuild = res.data.tutorials;
+        this.listGuild = res.data.data;
       });
     },
   },
