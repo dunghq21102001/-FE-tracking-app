@@ -71,7 +71,8 @@
                                     border-[1px] border-solid border-gray-300
                                     focus:outline-none
                                     p-3
-                                    " :id="formData.question" v-model="formData.question" />
+                                    " :id="formData.question" v-model="formData.question" 
+                                    :rules="validateEmpty"/>
                     </div>
                     <div class="flex flex-col mb-4">
                         <label :title="formData.answer" :for="formData.answer">
@@ -80,7 +81,8 @@
                         </label>
                         <Field name="answer" type="text" v-slot="{ field, errors }" class="
                                 
-                            " :id="formData.answer" v-model="formData.answer">
+                            " :id="formData.answer" v-model="formData.answer"
+                            :rules="validateEmpty">
                             <textarea class="w-[240px] md:w-[360px]
                                 mx-3
                                 border-[1px] border-solid border-gray-300
@@ -153,6 +155,7 @@ export default {
             this.formData.answer = this.currentService.answer
         },
         async create() {
+            if(this.formData.question.trim() == '' || this.formData.answer.trim() == '') return swal2.error('Phải nhập đầy đủ thông tin để tạo 1 câu hỏi') 
             await service.createGuild(this.formData)
                 .then(res => {
                     swal2.success('Tạo mới 1 câu hỏi thành công')
@@ -163,6 +166,7 @@ export default {
                 .catch(err => swal2.error(err))
         },
         async update() {
+            if(this.formData.question.trim() == '' || this.formData.answer.trim() == '') return swal2.error('Phải nhập đầy đủ thông tin để sửa 1 câu hỏi') 
             await service.updateGuild(this.formData, this.currentService.id)
                 .then(res => {
                     swal2.success('Chỉnh sửa câu hỏi thành công')
@@ -197,6 +201,12 @@ export default {
         async clickCallback(pageNum) {
             await axios.get(API.guild + `?page=${pageNum}`)
                 .then(res => this.listService = res.data.data)
+        },
+        validateEmpty(value) {
+            if(!value) {
+            return 'Không được bỏ trống trường này'
+            }
+            return true;
         },
 
     }

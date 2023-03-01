@@ -34,14 +34,17 @@
             <div class="w-[90%] md:w-[60%] bg-white rounded-lg p-6 h-[40vh] overflow-y-scroll">
                 <span @click="close" class="cursor-pointer">❌</span>
                 <Form class="flex flex-col justify-around items-center" @submit="submitForm">
-                    <span>Tên vai trò <span class="text-red-500">(*)</span></span>
+                    <span>Tên vai trò <span class="text-red-500">(*)</span>
+                    <ErrorMessage class="text-red-500" name="role"></ErrorMessage>
+                </span>
                     <Field name="role" class="
                             w-[240px] md:w-[320px]
                             mx-3
                             border-[1px] border-solid border-gray-300
                             focus:outline-none
                             mb-4
-                            p-3" v-model="formData.name" />
+                            p-3" v-model="formData.name" 
+                            :rules="validateEmpty"/>
                     <button v-if="isCreate" @click="createRole"
                         class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#338bad]">
                         Tạo
@@ -102,6 +105,7 @@ export default {
             if (this.currentRole) this.formData.name = this.currentRole.name
         },
         async createRole() {
+            if(this.formData.name.trim() == '') return swal2.error('Phải nhập tên để tạo 1 vai trò')
             await service.createRole(this.formData)
                 .then(res => {
                     swal2.success('Tạo mới vai trò thành công')
@@ -111,6 +115,7 @@ export default {
                 .catch(err => swal2(err))
         },
         async updateRole() {
+            if(this.formData.name.trim() == '') return swal2.error('Phải nhập tên để sửa 1 vai trò')
             await service.updateRole(this.formData, this.currentRole.id)
                 .then(res => {
                     swal2.success('Sửa vai trò thành công')
@@ -141,6 +146,12 @@ export default {
             this.formData = {
                 name: ''
             }
+        },
+        validateEmpty(value) {
+            if(!value) {
+            return 'Không được bỏ trống trường này'
+            }
+            return true;
         },
     }
 }

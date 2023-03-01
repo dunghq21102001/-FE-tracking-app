@@ -62,7 +62,7 @@
                 <Form class="flex flex-col justify-around items-center" @submit="submitForm">
                     <div class="flex flex-col mb-4">
                         <label :title="formData.name" :for="formData.name">
-                            Name <span class="text-red-500">*</span>
+                            Name 
                             <ErrorMessage name="name" class="text-red-500" />
                         </label>
                         <Field name="name" type="text" class="
@@ -78,9 +78,9 @@
                             Description <span class="text-red-500">*</span>
                             <ErrorMessage name="description" class="text-red-500" />
                         </label>
-                        <Field name="description" type="text" v-slot="{ field, errors }" class="
-                                
-                            " :id="formData.description" v-model="formData.description">
+                        <Field name="description" type="text" v-slot="{ field, errors }" class="" :id="formData.description" 
+                        :rules="validateEmpty"
+                        v-model="formData.description">
                             <textarea class="w-[240px] md:w-[320px]
                                 mx-3
                                 border-[1px] border-solid border-gray-300
@@ -153,6 +153,7 @@ export default {
             this.formData.description = this.currentService.description
         },
         async create() {
+            if(this.formData.description.trim() == '') return swal2.error('Phải nhập mô tả để tạo 1 dịch vụ')
             await service.createService(this.formData)
                 .then(res => {
                     swal2.success('Tạo mới 1 dịch vụ thành công')
@@ -163,6 +164,7 @@ export default {
                 .catch(err => swal2.error(err))
         },
         async update() {
+            if(this.formData.description.trim() == '') return swal2.error('Phải nhập mô tả để sửa 1 dịch vụ')
             await service.updateService(this.formData, this.currentService.id)
                 .then(res => {
                     swal2.success('Chỉnh sửa dịch vụ thành công')
@@ -197,6 +199,12 @@ export default {
         async clickCallback(pageNum) {
             await axios.get(API.service + `?page=${pageNum}`)
                 .then(res => this.listService = res.data.data)
+        },
+        validateEmpty(value) {
+            if(!value) {
+            return 'Không được bỏ trống trường này'
+            }
+            return true;
         },
 
     }

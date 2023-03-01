@@ -69,17 +69,8 @@
             </table>
         </div>
         <!-- pagination -->
-        <paginate
-            v-model="page"
-            :page-count="totalPage"
-            :page-range="3"
-            :margin-pages="2"
-            :click-handler="clickCallback"
-            :prev-text="'Prev'"
-            :next-text="'Next'"
-            :container-class="'pagination'"
-            :page-class="'page-item'"
-        >
+        <paginate v-model="page" :page-count="totalPage" :page-range="3" :margin-pages="2" :click-handler="clickCallback"
+            :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'">
         </paginate>
 
         <!-- form create/update -->
@@ -99,7 +90,7 @@
                     <div class="flex flex-col mb-4">
                         <label :title="FormData.email" :for="FormData.email">
                             Email <span class="text-red-500">*</span>
-                            <ErrorMessage name="email" class="text-red-500"/>
+                            <ErrorMessage name="email" class="text-red-500" />
                         </label>
                         <Field name="email" type="text" class="
                             w-[240px] md:w-[320px]
@@ -107,22 +98,20 @@
                             border-[1px] border-solid border-gray-300
                             focus:outline-none
                             p-3
-                            " :id="FormData.email" v-model="FormData.email" 
-                            :rules="validateEmail"/>
+                            " :id="FormData.email" v-model="FormData.email" :rules="validateEmail" />
                     </div>
                     <div v-if="isCreate" class="flex flex-col mb-4">
                         <label :title="FormData.password" :for="FormData.password">
                             Password <span class="text-red-500">*</span>
-                            <ErrorMessage name="password" class="text-red-500"/>
+                            <ErrorMessage name="password" class="text-red-500" />
                         </label>
                         <Field name="password" type="text" class="
-                            w-[240px] md:w-[320px]
-                            mx-3
-                            border-[1px] border-solid border-gray-300
-                            focus:outline-none
-                            p-3
-                            " :id="FormData.password" v-model="FormData.password" 
-                            :rules="validatePassword"/>
+                                w-[240px] md:w-[320px]
+                                mx-3
+                                border-[1px] border-solid border-gray-300
+                                focus:outline-none
+                                p-3
+                                " :id="FormData.password" v-model="FormData.password" :rules="validatePassword" />
                     </div>
                     <div class="flex flex-wrap pb-4 w-full" v-if="isCreate">
                         <span>Roles <span class="text-red-500">*</span>:</span>
@@ -190,7 +179,7 @@ export default {
             await service.listUsers()
                 .then(res => {
                     console.log(res.data);
-                    if(res.data.message == 'Token is Invalid'){
+                    if (res.data.message == 'Token is Invalid') {
                         localStorage.removeItem('token');
                         window.location.href = "/login";
                     }
@@ -224,6 +213,8 @@ export default {
             }
         },
         async createUser() {
+            if (this.FormData.email.trim() == '' || this.FormData.password.trim() == '')
+                return swal2.error('Hãy điền đầy đủ để tạo tài khoản!')
             await service.register(this.FormData)
                 .then(res => {
                     this.close()
@@ -234,6 +225,11 @@ export default {
                 .catch(err => swal2(err))
         },
         async updateUser() {
+            if (this.FormData.email.trim() == '')
+                return swal2.error('Hãy điền đầy đủ thông tin để cập nhật tài khoản!')
+            if (this.FormData.roles.length == 0)
+                return swal2.error('Hãy sử dụng ít nhất 1 role cho người dùng này!')
+
             const data = {
                 email: this.FormData.email,
                 roles: this.FormData.roles
@@ -258,23 +254,23 @@ export default {
                 roles: []
             }
         },
-        async clickCallback (pageNum) {
-        await axios.get(API.user + `/listUsers?page=${pageNum}`)
-            .then(res => this.listUsers = res.data.data)
+        async clickCallback(pageNum) {
+            await axios.get(API.user + `/listUsers?page=${pageNum}`)
+                .then(res => this.listUsers = res.data.data)
         },
         validateEmail(value) {
             if (!value) {
                 return '(Bắt buộc nhập)';
             }
-             // if the field is not a valid email
-            const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-            if (!regex.test(value)) {
-                return 'Hãy nhập đúng định dạng email';
-            }
+            // if the field is not a valid email
+            // const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+            // if (!regex.test(value)) {
+            //     return 'Hãy nhập đúng định dạng email';
+            // }
             return true
         },
         validatePassword(value) {
-            if(!value){
+            if (!value) {
                 return '(Bắt buộc nhập)'
             }
             return true
@@ -284,6 +280,7 @@ export default {
 </script>
 <style scoped lang="css">
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
+
 table {
     text-align: center;
 }
@@ -307,12 +304,13 @@ td {
 }
 
 /* Adopt bootstrap pagination stylesheet. */
-  
-  /* Write your own CSS for pagination */
-  
-  .pagination {
+
+/* Write your own CSS for pagination */
+
+.pagination {
     justify-content: space-around;
-  }
-  /* .page-item {
+}
+
+/* .page-item {
   } */
 </style>
