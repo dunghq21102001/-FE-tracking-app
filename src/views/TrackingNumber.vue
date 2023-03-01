@@ -9,24 +9,24 @@
         border-t-[4px] border-blue-400 border-solid
       ">
       <TrackingHeader @searchBOL="searchBOL"></TrackingHeader>
-      <div class="flex md:block justify-center">
+      <div class="flex md:block justify-center ml-5 mb-5">
         <button @click="resetList" class="ml-0 md:ml-5 mt-5 rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
-        Đặt lại danh sách
+        {{$t('Reset')}} {{$t('List')}}
       </button>
       </div>
       <div class="w-full overflow-x-scroll h-[65vh]">
-        <table class="w-full my-12">
+        <table class="w-full">
           <thead class="sticky top-0 left-0 bg-[#3c8dbc] text-white">
             <tr class="text-center">
               <th class="font-bold py-3" v-for="(field, index) in fields" :key="index" :title="field.title">
-                {{ field.name }}
+                {{ $t(field.name) }}
               </th>
-              <th class="font-bold py-3">Hành Động</th>
+              <th class="font-bold py-3">{{$t('Action')}}</th>
             </tr>
           </thead>
           <tbody>
             <tr v-if="trackingList.length == 0">
-              <td class="text-center" colspan="8">No data available</td>
+              <td class="text-center" colspan="8">{{$t('No Data Available')}}</td>
             </tr>
             <tr v-for="(t, i) in trackingList" :key="t.id" :class="i % 2 == 0 ? 'bg-gray-200' : ''">
               <td>
@@ -58,14 +58,14 @@
                 <div class="w-[150px]">{{ t.note }}</div>
               </td>
               <td>
-                <div class="w-[200px] flex justify-around">
+                <div class="w-[300px] flex justify-around">
                   <button @click="trackingActions('update', t.id, t.status)"
                     class="rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
-                    Sửa
+                    {{$t('Update')}}
                   </button>
                   <button @click="trackingActions('delete', t.id, t.status)"
                     class="rounded-sm text-white px-7 py-1 max-h-10 bg-red-600">
-                    Huỷ
+                    {{$t('Cancel')}}
                   </button>
                 </div>
               </td>
@@ -87,8 +87,7 @@
           px-2
           mt-6
                 ">
-        ⚠️ Để Xem chi tiết Trạng Thái Tracking. Quý Khách hãy click vào ô Trạng
-        Thái của mỗi dòng Tracking Number bên trên!
+        ⚠️ {{$t('To View Details Tracking Status. Please click on the Status box of each Tracking Number line above!')}}
       </div>
     </div>
   </div>
@@ -139,7 +138,7 @@ export default {
     },
     trackingActions(type, id, status) {
       if (status != 'new')
-        return swal2.error('Chỉ có thể sửa / huỷ tracking ở trạng thái mới(new) !')
+        return swal2.error(`${this.$t('Tracking can only be edited/canceled in a new state!')}`)
       if (type == 'update') {
         this.$router.push({ name: 'tracking-number-update', params: { id: id } })
       } else {
@@ -147,7 +146,7 @@ export default {
           if (result.value) {
             Service.cancelTracking(id)
               .then(res => {
-                swal2.success('Huỷ Tracking thành công')
+                swal2.success(`${this.$t('Cancel')} ${this.$t('Successfully')}`)
                 this.getList()
               })
           }

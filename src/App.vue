@@ -1,6 +1,19 @@
 <script>
+import { useLanguageStore } from './store/language';
 export default {
+  setup() {
+    const langStore = useLanguageStore()
+    return { langStore }
+  },
   components: {
+  },
+  created() {
+    this.getCurrentLang()
+  },
+  methods: {
+    getCurrentLang() {
+      this.$i18n.locale = this.langStore.getLocate 
+    }
   },
   computed: {
     currentRouteName() {

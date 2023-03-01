@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-between mx-6 items-center my-3 flex-col md:flex-row">
-    <span class="text-[14px] md:text-lg">█║▌ Đăng ký / Quản lý Trackings</span>
+    <span class="text-[14px] md:text-lg">█║▌ {{$t('Create', ['Tracking'])}} / {{$t('Manage')}} Trackings</span>
     <input class="
           border-[1px] border-solid border-black/25
           focus:outline-none
@@ -12,16 +12,17 @@
   <hr />
   <div class="flex justify-around items-center md:items-end mt-3 flex-wrap flex-col md:flex-row">
     <div class="flex flex-col">
-      <span>Mã Vận Đơn</span>
+      <span>{{$t('BOL')}}</span>
       <input class="
             border-[1px] border-solid border-black/25
             focus:outline-none
             p-2
             w-[200px]
-          " type="text" placeholder="Nhập mã vận đơn để tìm kiếm ..." v-model="formSearch.bol_code"/>
+          " type="text" :placeholder="`${$t('Input to Find', [$t('BOL')])}`"
+           v-model="formSearch.bol_code"/>
     </div>
     <div class="flex flex-col">
-      <span>Từ Ngày</span>
+      <span>{{$t('From Date')}}</span>
       <input class="
             mt-3 md:mt-0
             border-[1px] border-solid border-black/25
@@ -31,7 +32,7 @@
           " type="date" v-model="formSearch.from_date" />
     </div>
     <div class="flex flex-col">
-      <span>Đến Ngày</span>
+      <span>{{$t('To Date')}}</span>
       <input class="
             mt-3 md:mt-0
             border-[1px] border-solid border-black/25
@@ -49,9 +50,9 @@
           hover:bg-blue-400
           h-10
           mt-3 md:mt-0
-          w-[200px] md:w-[80px]
+          w-[200px]
         ">
-      Tìm
+      {{$t('Search')}}
     </button>
     <div class=" hidden md:block border-l-[2px] border-solid border-gray-300 h-10"></div>
     <router-link :to="{name: 'tracking-number-create'}">
@@ -67,7 +68,7 @@
           w-[200px] md:w-[155px]
           mt-3 md:mt0
         ">
-        █║▌ Đăng ký
+        █║▌ {{$t('Create')}}
       </button>
     </router-link>
   </div>
@@ -97,7 +98,7 @@ export default {
   methods: {
     search() {
       if(this.formSearch.from_date > this.formSearch.to_date){
-        swal2.error('Ngày sau phải lớn hơn ngày đầu!', 3000)
+        swal2.error(`${$t('The next day must be bigger than the first day!')}`, 3000)
         return
       }
       this.$emit('searchBOL', this.formSearch)

@@ -32,7 +32,7 @@
             w-[80%]
           " type="password" v-model="formLogin.password" @keyup.enter="login" />
       <button class="rounded-lg bg-blue-500 text-white py-2 px-4" v-if="!isLoading" @click="login">
-        Đăng nhập
+        {{ $t('Login') }}
       </button>
       <button v-if="isLoading" type="button" class="
             inline-flex
@@ -60,10 +60,9 @@
         </svg>
         Processing...
       </button>
-      <h1 class="text-white">Chưa có tài khoản? 
+      <h1 class="text-white">{{ $t('No account') }}?
         <span class="cursor-pointer text-red-500" 
-        @click="isRegister = true && resetForm">Đăng ký</span>
-         ngay
+        @click="isRegister = true && resetForm">{{ $t('Register') }}</span>
       </h1>
     </div>
 
@@ -98,7 +97,7 @@
             w-[80%]
           " type="password" v-model="formLogin.password" @keyup.enter="register" />
       <button class="rounded-lg bg-blue-500 text-white py-2 px-4" v-if="!isLoading" @click="register">
-        Đăng ký
+        {{ $t('Register') }}
       </button>
       <button v-if="isLoading" type="button" class="
             inline-flex
@@ -124,12 +123,11 @@
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
           </path>
         </svg>
-        Processing...
+        {{$t('Processing')}}...
       </button>
-      <h1 class="text-white">Đã có tài khoản? 
+      <h1 class="text-white">{{ $t('Already have an account') }} 
         <span class="cursor-pointer text-red-500" 
-        @click="isRegister = false && resetForm">Đăng nhập</span>
-         ngay
+        @click="isRegister = false && resetForm">{{ $t('Login') }}</span>
       </h1>
     </div>
 
@@ -179,11 +177,11 @@ export default {
           this.isRegister = false
           this.isLoading = false
           this.resetForm()
-          swal2.success('Đăng ký thành công, hãy đăng nhập để trải nghiệm', 5000)
+          swal2.success(this.$t('Successful registration, please login to experience'), 5000)
         })
         .catch(err => {
           // swal2.error(err)
-          swal2.error('Email đã được sử dụng!')
+          swal2.error(this.$t('Email already exist'))
           this.isLoading = false
         })
     },

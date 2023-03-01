@@ -6,7 +6,7 @@
         </router-link>
         <ul class="w-full flex-col">
             <router-link :to="{ name: menuItem.url }" v-for="(menuItem, i) in listMenuAdmin" :key="i">
-                <li :title="menuItem.title"><span>{{ menuItem.name }}</span><span>⫸</span></li>
+                <li :title="$t(menuItem.title)"><span>{{ $t(menuItem.name) }}</span><span>⫸</span></li>
             </router-link>
         </ul>
     </div>
@@ -24,7 +24,7 @@
             :key="i" >
             <router-link :to="{ name: field.url }">
               <v-list-item-title>
-                  {{ field.name }}
+                  {{ $t(field.name) }}
                 </v-list-item-title>
               </router-link>  
             </v-list-item>

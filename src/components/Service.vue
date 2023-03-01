@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto mt-4 w-[90%] lg:w-[80%]">
     <span class="text-2xl text-[#007199] uppercase font-bold"
-      >Các dịch vụ phổ biến
+      >{{$t('Popular Services')}}
     </span>
     <ul
       class="

@@ -22,11 +22,11 @@
 
       <div>
         <span class="uppercase font-bold text-[#007199] text-xl">
-          GỬI CÂU HỎI
+          {{ $t('Send') }} {{ $t('Question') }}
         </span>
         <form action="">
           <div>
-            <label for="fullName">Họ và tên:<span class="text-red-500">*</span></label><br />
+            <label for="fullName">{{ $t('Full Name') }}:<span class="text-red-500">*</span></label><br />
             <input v-model="formData.fullName" type="text" id="fullName" />
           </div>
           <div>
@@ -34,16 +34,16 @@
             <input v-model="formData.email" type="email" id="email" />
           </div>
           <div>
-            <label for="title">Chủ đề:<span class="text-red-500">*</span></label><br />
+            <label for="title">{{$t('Title')}}:<span class="text-red-500">*</span></label><br />
             <input v-model="formData.title" type="text" id="title" />
           </div>
           <div>
-            <label for="question">Câu hỏi:<span class="text-red-500">*</span></label><br />
+            <label for="question">{{$t('Question')}}:<span class="text-red-500">*</span></label><br />
             <textarea v-model="formData.question" name="" id="question" cols="30" rows="10"></textarea>
           </div>
         </form>
         <button @click="createRequest" class="rounded-sm bg-[#3c8dbc] text-white px-7 py-1 hover:bg-blue-400">
-          Gửi
+          {{ $t('Send') }}
         </button>
       </div>
     </div>
@@ -67,7 +67,7 @@ export default {
     async createRequest() {
       await Service.createRequest(this.formData)
         .then(res => {
-          swal2.success('Tạo yêu cầu thành công, hãy chờ chúng tôi liên hệ với bạn qua email', 5000)
+          swal2.success(`${this.$t('Create success requirements, wait for us to contact you via email')}`, 5000)
           this.formData = {
             fullName: '',
             email: '',

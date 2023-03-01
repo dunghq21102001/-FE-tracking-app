@@ -2,7 +2,7 @@
   <header-common></header-common>
   <div class="w-full min-h-[100vh] pt-4 bg-[#ecf0f5]">
     <div class="w-[80%] mx-auto flex justify-between mb-4">
-      <span class="text-2xl text-[#007199] uppercase font-bold">Danh Sách Người Nhận
+      <span class="text-2xl text-[#007199] uppercase font-bold">{{$t('Recipient List')}}
       </span>
       <button @click="isShow = true" class="
             rounded-lg
@@ -13,7 +13,7 @@
             ml-4
             hover:bg-[#06814a]
           ">
-        ➕ Thêm Người Nhận
+        ➕ {{ $t('Add') }} {{ $t('Receiver') }}
       </button>
     </div>
     <div class="
@@ -28,14 +28,14 @@
         <thead>
           <tr class="text-center">
             <th class="font-bold" v-for="(field, index) in fields" :key="index" :title="field.title">
-              {{ field.name }}
+              {{ $t(`${field.name}`) }}
             </th>
-            <th>Hành Động</th>
+            <th>{{ $t('Action') }}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-if="receiverList.length == 0">
-            <td class="text-center" colspan="8">No data found</td>
+            <td class="text-center" colspan="8">{{ $t('No Data Available') }}</td>
           </tr>
           <tr v-for="(receiver, index) in receiverList" :key="receiver.id" :class="index % 2 == 0 ? 'bg-gray-200' : ''">
             <td>
@@ -57,13 +57,13 @@
               <div class="w-[150px]">{{ receiver.phone2 }}</div>
             </td>
             <td>
-              <div class="w-[200px] flex justify-around">
+              <div class="w-[300px] flex justify-around">
                 <button @click="updateReceiver(receiver.id)" class="rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
-                  Sửa
+                  {{ $t('Update') }}
                 </button>
                 <button @click="deleteReceiver(receiver.id, receiver.last_name)"
                   class="rounded-sm text-white px-7 py-1 max-h-10 bg-red-600">
-                  Xoá
+                  {{ $t('Delete') }}
                 </button>
               </div>
             </td>
@@ -86,7 +86,7 @@
           <Form class="flex flex-col justify-around items-center" @submit="createReceiver">
             <div class="flex flex-col mb-4">
               <label :title="formSubmit.first_name" :for="formSubmit.first_name">
-                Họ 
+                {{ $t('First Name') }} 
                 <!-- <span class="text-red-500">*</span> -->
               </label>
               <Field name="first_name" type="text" class="
@@ -99,7 +99,7 @@
             </div>
             <div class="flex flex-col mb-4">
               <label :title="formSubmit.last_name" :for="formSubmit.last_name">
-                Tên <span class="text-red-500">*</span>
+                {{ $t('Last Name') }} <span class="text-red-500">*</span>
               <ErrorMessage class="text-red-500" name="last_name"/>
               </label>
               <Field name="last_name" type="text" class="
@@ -113,7 +113,7 @@
             </div>
             <div class="flex flex-col mb-4">
               <label :title="formSubmit.phone1" :for="formSubmit.phone1">
-                Số ĐT 1 
+                {{ $t('Phone 1') }} 
                 <!-- <span class="text-red-500">*</span> -->
                 <ErrorMessage name="phone1" class="text-red-500" />
               </label>
@@ -127,7 +127,7 @@
             </div>
             <div class="flex flex-col mb-4">
               <label :title="formSubmit.phone2" :for="formSubmit.phone2">
-                Số ĐT 2 
+                {{ $t('Phone 2') }} 
                 <!-- <span class="text-red-500">*</span> -->
                 <ErrorMessage name="phone2" class="text-red-500" />
               </label>
@@ -141,7 +141,7 @@
             </div>
             <div class="flex flex-col mb-4">
               <label :title="formSubmit.address" :for="formSubmit.address">
-                Địa Chỉ <span class="text-red-500">*</span>
+                {{ $t('Address') }} <span class="text-red-500">*</span>
                 <ErrorMessage class="text-red-500" name="address"/></label>
               <Field name="address" type="text" class="
                     w-[240px] md:w-[320px]
@@ -154,7 +154,7 @@
             </div>
             <div class="flex flex-col mb-4">
               <label :title="formSubmit.city" :for="formSubmit.city">
-                Thành Phố <span class="text-red-500">*</span>
+                {{ $t('City') }} <span class="text-red-500">*</span>
                 <ErrorMessage class="text-red-500" name="city"/></label>
               <Field name="city" type="text" class="
                     w-[240px] md:w-[320px]
@@ -167,7 +167,7 @@
             </div>
             <div class="flex flex-col mb-4">
               <label :title="formSubmit.country" :for="formSubmit.country">
-                Quốc Gia <span class="text-red-500">*</span>
+                {{ $t('Nation') }} <span class="text-red-500">*</span>
                 <ErrorMessage class="text-red-500" name="country"/></label>
               <Field name="country" type="text" class="
                     w-[240px] md:w-[320px]
@@ -179,7 +179,7 @@
                   :rules="validateEmpty"/>
             </div>
             <button type="submit" class="rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
-              Tạo
+              {{ $t('Create', [$t('Receiver')]) }}
             </button>
           </Form>
         </div>
@@ -226,7 +226,7 @@ export default {
       Service.createReceiver(this.formSubmit);
       this.isShow = false;
       this.getList();
-      swal2.success("Create receiver successfully");
+      swal2.success(`${this.$t('Create', [this.$t('Successfully')])}`);
     },
     validatePhone(value) {
       if (!value) {
@@ -235,14 +235,14 @@ export default {
       // if the field is not a valid
       const regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
       if (!regex.test(value)) {
-        return "(Số ĐT đã nhập không đúng định dạng)";
+        return `${this.$t('Phone')} ${this.$t('Wrong Format')}`
       }
       // All is good
       return true;
     },
     validateEmpty(value) {
       if(!value) {
-        return 'Không được bỏ trống trường này'
+        return this.$t('This field cannot be left blank')
       }
       return true;
     },
@@ -256,10 +256,10 @@ export default {
             .then((res) => {
               if(res.data.error) {
                 swal2.error(res.data.error)
-              } else swal2.success(`Xoá ${name} thành công`);
+              } else swal2.success(`${this.$t('Delete')} ${name} ${this.$t('Successfully')}`);
               this.getList();
             })
-            .catch((err) => swal2.error("Something went wrong!"));
+            .catch((err) => swal2.error(err));
         }
       });
     },

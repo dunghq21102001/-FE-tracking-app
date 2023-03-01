@@ -1,8 +1,8 @@
 <template>
     <div class="w-full">
-        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Permissions Management</div>
+        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">{{ $t('X Management', [$t('Permission')]) }}</div>
         <button @click="showCreate" class=" m-4 rounded-lg text-white px-7 py-1 max-h-10 bg-[#438aab]">
-            🚫 Tạo quyền
+            🚫 {{$t('Create')}}
         </button>
         <div class="w-full h-[60vh] overflow-y-scroll">
             <div class="w-full flex flex-col h-full flex-wrap justify-start items-start pl-[30px]">
@@ -28,7 +28,7 @@
             <div class="w-[90%] md:w-[60%] bg-white rounded-lg p-6 h-[40vh] overflow-y-scroll">
                 <span @click="close" class="cursor-pointer">❌</span>
                 <Form class="flex flex-col justify-around items-center" @submit="submitForm">
-                    <span>Tên quyền <span class="text-red-500">(*)</span>
+                    <span>{{$t('Name')}}<span class="text-red-500">(*)</span>
                     <ErrorMessage class="text-red-500" name="permission"></ErrorMessage>
                 </span>
                     <Field name="permission" class="
@@ -41,7 +41,7 @@
                         :rules="validateEmpty"/>
                     <button v-if="isCreate" @click="createPer"
                         class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#338bad]">
-                        Tạo
+                        {{$t('Create')}}
                     </button>
                 </Form>
             </div>
@@ -82,10 +82,10 @@ export default {
             this.isCreate = true
         },
         async createPer() {
-            if(this.formData.name.trim() == '') return swal2.error('Nhập tên quyền để tạo')
+            if(this.formData.name.trim() == '') return swal2.error(`${this.$t('Enter To', [this.$t('Permission'), this.$t('Create')])}`)
             await service.createPermission(this.formData)
                 .then(res => {
-                    swal2.success('Tạo mới quyền thành công')
+                    swal2.success(`${this.$t('Create')} ${this.$t('Successfully')}`)
                     this.getList()
                     this.close()
                 })
@@ -99,9 +99,9 @@ export default {
                             // console.log(res);
                             if (res.data.message) return swal2.error(res.data.message)
                             this.getList()
-                            swal2.success(`Xoá quyền này thành công`);
+                            swal2.success(`${this.$t('Delete')} ${this.$t('Successfully')}`);
                         })
-                        .catch((err) => swal2.error("Something went wrong!"));
+                        .catch((err) => swal2.error(err));
                 }
             });
         },
@@ -115,7 +115,7 @@ export default {
         submitForm() { },
         validateEmpty(value) {
             if(!value) {
-            return 'Không được bỏ trống trường này'
+            return `${this.$t('This field cannot be left blank')}`
             }
             return true;
         },

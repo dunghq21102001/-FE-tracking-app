@@ -27,28 +27,28 @@ class receiver {
     static fields() {
         return [
             {
-                name: 'Tên',
-                title: 'Tên'
+                name: 'Name',
+                title: 'Name'
             },
             {
-                name: 'Địa Chỉ',
-                title: 'Địa Chỉ'
+                name: 'Address',
+                title: 'Address'
             },
             {
-                name: 'Quận / Huyện',
-                title: 'Quận / Huyện'
+                name: 'District',
+                title: 'District'
             },
             {
-                name: 'Tỉnh / Thành Phố',
-                title: 'Tỉnh / Thành Phố'
+                name: 'City',
+                title: 'City'
             },
             {
-                name: 'Số ĐT 1',
-                title: 'Số ĐT 1'
+                name: 'Phone 1',
+                title: 'Phone 1'
             },
             {
-                name: 'Số ĐT 2',
-                title: 'Số ĐT 2'
+                name: 'Phone 2',
+                title: 'Phone 2'
             },
         ]
     }

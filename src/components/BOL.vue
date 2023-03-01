@@ -1,7 +1,7 @@
 <template>
   <div class="w-[90%] lg:w-[80%] mx-auto pt-3">
     <span class="text-2xl text-[#007199] uppercase font-bold">
-      Theo dõi vận đơn
+      {{$t('Event Tracking')}}
     </span>
     <div class="
             bg-white
@@ -12,7 +12,7 @@
             justify-center
             p-3
           ">
-      <textarea placeholder="Nhập tracking number cần tìm, 1 số trên mỗi dòng . . ." class="
+      <textarea :placeholder="`${$t('Input to Find', ['Tracking'])}`" class="
             min-h-[100px]
             w-full
             focus:outline-none
@@ -20,7 +20,7 @@
             p-2
           " v-model="formSearch.search"></textarea>
       <button @click="search" class="bg-[#00c0ef] mt-2 text-white rounded-md px-3 py-1 w-[100px]">
-        Theo dõi
+        {{ $t('Search') }}
       </button>
     </div>
   </div>
