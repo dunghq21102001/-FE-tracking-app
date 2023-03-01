@@ -1,10 +1,10 @@
 <template>
     <div class="w-full">
-        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Guild Management</div>
+        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">{{ $t('X Management', [$t('Guild')]) }}</div>
     </div>
 
     <button @click="showCreate" class=" m-2 md:m-4 rounded-lg text-white px-7 py-1 max-h-10 bg-[#438aab]">
-        😃 Tạo Câu Hỏi
+        😃 {{ $t('Create', [$t('Question')]) }}
     </button>
 
     <div class="mt-5 w-full overflow-x-scroll h-[60vh]">
@@ -12,13 +12,13 @@
             <thead class="sticky top-0 left-0 bg-[#f37070]">
                 <tr>
                     <th>
-                        Câu Hỏi
+                        {{ $t('Question') }}
                     </th>
                     <th>
-                        Câu Trả Lời
+                        {{ $t('Answer') }}
                     </th>
                     <th>
-                        Hành Động
+                        {{ $t('Action') }}
                     </th>
                 </tr>
             </thead>
@@ -62,7 +62,7 @@
                 <Form class="flex flex-col justify-around items-center" @submit="submitForm">
                     <div class="flex flex-col mb-4">
                         <label :title="formData.question" :for="formData.question">
-                            Câu Hỏi <span class="text-red-500">*</span>
+                            {{ $t('Question') }} <span class="text-red-500">*</span>
                             <ErrorMessage name="question" class="text-red-500" />
                         </label>
                         <Field name="question" type="text" class="
@@ -76,7 +76,7 @@
                     </div>
                     <div class="flex flex-col mb-4">
                         <label :title="formData.answer" :for="formData.answer">
-                            Câu Trả Lời <span class="text-red-500">*</span>
+                            {{ $t('Answer') }} <span class="text-red-500">*</span>
                             <ErrorMessage name="answer" class="text-red-500" />
                         </label>
                         <Field name="answer" type="text" v-slot="{ field, errors }" class="
@@ -91,10 +91,10 @@
                         </Field>
                     </div>
                     <button v-if="isCreate" @click="create" class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#338bad]">
-                        Tạo
+                        {{ $t('Create') }}
                     </button>
                     <button v-if="isUpdate" @click="update" class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#3cb138]">
-                        Sửa
+                        {{ $t('Update') }}
                     </button>
                 </Form>
             </div>
@@ -155,10 +155,10 @@ export default {
             this.formData.answer = this.currentService.answer
         },
         async create() {
-            if(this.formData.question.trim() == '' || this.formData.answer.trim() == '') return swal2.error('Phải nhập đầy đủ thông tin để tạo 1 câu hỏi') 
+            if(this.formData.question.trim() == '' || this.formData.answer.trim() == '') return swal2.error(`${this.$t('Enter To', [this.$t('All Field'), this.$t('Create')])}`) 
             await service.createGuild(this.formData)
                 .then(res => {
-                    swal2.success('Tạo mới 1 câu hỏi thành công')
+                    swal2.success(`${this.$t('Create', [this.$t('Question')])} ${this.$t('Successfully')}`)
                     this.page = 1
                     this.getList()
                     this.close()
@@ -166,10 +166,10 @@ export default {
                 .catch(err => swal2.error(err))
         },
         async update() {
-            if(this.formData.question.trim() == '' || this.formData.answer.trim() == '') return swal2.error('Phải nhập đầy đủ thông tin để sửa 1 câu hỏi') 
+            if(this.formData.question.trim() == '' || this.formData.answer.trim() == '') return swal2.error(`${this.$t('Enter To', [this.$t('All Field'), this.$t('Update')])}`) 
             await service.updateGuild(this.formData, this.currentService.id)
                 .then(res => {
-                    swal2.success('Chỉnh sửa câu hỏi thành công')
+                    swal2.success(`${this.$t('Update')} ${this.$t('Successfully')}`)
                     this.page = 1
                     this.getList()
                     this.close()
@@ -181,7 +181,7 @@ export default {
             if (result.value) {
             service.deleteGuild(id)
               .then(res => {
-                swal2.success('Xoá câu hỏi thành công')
+                swal2.success(`${this.$t('Delete')} ${this.$t('Successfully')}`)
                 this.getList()
                 this.page = 1
               })
@@ -204,7 +204,7 @@ export default {
         },
         validateEmpty(value) {
             if(!value) {
-            return 'Không được bỏ trống trường này'
+            return `${this.$t('This field cannot be left blank')}`
             }
             return true;
         },

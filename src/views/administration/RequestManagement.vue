@@ -1,15 +1,15 @@
 <template>
     <div class="w-full">
-        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Request Management</div>
+        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">{{$t('X Management', [$t('Request')])}}</div>
 
         <div class="w-full overflow-y-scroll h-[70vh]">
             <table class="w-full">
                 <thead class="sticky top-0 left-0 bg-[#f37070]">
                     <tr class="text-center">
                         <th :title="field.title" v-for="(field, i) in fields" :key="i">
-                            {{ field.name }}
+                            {{ $t(field.name) }}
                         </th>
-                        <th>Hành Động</th>
+                        <th>{{ $t('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,7 +81,7 @@ export default {
                     Service.deleteRequest(id)
                         .then(res => {
                             this.getList()
-                            swal2.success('Xoá yêu cầu thành công')
+                            swal2.success(`${this.$t('Delete')} ${this.$t('Successfully')}`)
                         })
                         .catch(err => swal2.error(err))
                 }

@@ -1,9 +1,9 @@
 <template>
     <div class="w-full">
-        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Assign Roles</div>
+        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">{{$t('Assign Roles')}}</div>
         <select name="" id="" class="m-5 w-[200px] py-2 text-center border-black border-[2px] rounded-lg border-solid"
             v-model="selectedRole">
-            <option disabled value="">Chọn vai trò</option>
+            <option disabled value="">{{$t('Choose', [$t('Role')])}}</option>
             <option v-bind:value="role.id" v-for="role in roleList" :key="role.id">
                 {{ role.name }}
             </option>
@@ -25,7 +25,7 @@
         </div>
         <div class="w-full mt-5 flex" v-if="selectedRole && selectedList">
             <button @click="updateRole" class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#338bad] mx-auto">
-                Lưu
+                {{$t('Save')}}
             </button>
         </div>
     </div>
@@ -108,7 +108,7 @@ export default {
             // this.currentListRoleId.map(id => submitData.permission_ids.push(id))
             await roleService.addPermissionsForRole(submitData, this.currentRole.id)
                 .then(res => {
-                    swal2.success('Chỉnh sửa quyền của vai trò này thành công')
+                    swal2.success(`${this.$t('Update')} ${this.$t('Successfully')}`)
                     this.getPermissionList()
                     this.getRoleList()
                 })

@@ -2,40 +2,40 @@ class profile {
     static fields() {
         return [
             {
-                name: 'Tên',
-                title: 'Tên'
+                name: 'Name',
+                title: 'Name'
             },
             {
-                name: 'Điện Thoại',
-                title: 'Điện Thoại'
+                name: 'Phone',
+                title: 'Phone'
             },
             {
                 name: 'Email',
                 title: 'Email'
             },
             {
-                name: 'Quốc Gia',
-                title: 'Quốc Gia'
+                name: 'Nation',
+                title: 'Nation'
             },
             {
-                name: 'Địa Chỉ',
-                title: 'Địa Chỉ'
+                name: 'Address',
+                title: 'Address'
             },
             {
-                name: 'Địa Chỉ 2',
-                title: 'Địa Chỉ 2'
+                name: 'Address 2',
+                title: 'Address 2'
             },
             {
                 name: 'Zip Code',
                 title: 'Zip Code'
             },
             {
-                name: 'Thành Phố',
-                title: 'Thành Phố'
+                name: 'City',
+                title: 'City'
             },
             {
-                name: 'Quốc Gia',
-                title: 'Quốc Gia'
+                name: 'Nation',
+                title: 'Nation'
             },
         ]
     }

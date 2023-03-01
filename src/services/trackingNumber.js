@@ -32,36 +32,36 @@ class trackingNumber {
     static fields() {
         return [
             {
-                name: 'Mã Vận Đơn',
-                title: 'Mã Vận Đơn'
+                name: 'BOL',
+                title: 'BOL'
             },
             {
-                name: 'Phiếu Gửi Hàng',
-                title: 'Phiếu Gửi Hàng'
+                name: 'Delivery Notes',
+                title: 'Delivery Notes'
             },
             {
-                name: 'Trạng Thái',
-                title: 'Trạng Thái'
+                name: 'Status',
+                title: 'Status'
             },
             {
-                name: 'Người Nhận',
-                title: 'Người Nhận'
+                name: 'Receiver',
+                title: 'Receiver'
             },
             {
-                name: 'Số ĐT',
-                title: 'Số ĐT'
+                name: 'Phone',
+                title: 'Phone'
             },
             {
-                name: 'Địa Chỉ',
-                title: 'Địa Chỉ'
+                name: 'Address',
+                title: 'Address'
             },
             {
-                name: 'Ngày Tạo',
-                title: 'Ngày Tạo'
+                name: 'Created Date',
+                title: 'Created Date'
             },
             {
-                name: 'Ghi Chú',
-                title: 'Ghi Chú'
+                name: 'Note',
+                title: 'Note'
             },
         ]
     }

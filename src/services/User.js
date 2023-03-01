@@ -47,47 +47,47 @@ class User {
         return [
             {
                 name: '#',
-                title: 'Số Thứ Tự'
+                title: 'Numerical'
             },
             {
-                name: 'Họ',
-                title: 'Họ'
+                name: 'First Name',
+                title: 'First Name'
             },
             {
-                name: 'Tên',
-                title: 'Tên'
+                name: 'Last Name',
+                title: 'Last Name'
             },
             {
                 name: 'Email',
                 title: 'Email'
             },
             {
-                name: 'Số Điện Thoại 1',
-                title: 'Số Điện Thoại 1'
+                name: 'Phone 1',
+                title: 'Phone 1'
             },
             {
-                name: 'Số Điện Thoại 2',
-                title: 'Số Điện Thoại 2'
+                name: 'Phone 2',
+                title: 'Phone 2'
             },
             {
-                name: 'Địa Chỉ',
-                title: 'Địa Chỉ'
+                name: 'Address',
+                title: 'Address'
             },
             {
-                name: 'Thành Phố',
-                title: 'Thành Phố'
+                name: 'City',
+                title: 'City'
             },
             {
-                name: 'Quốc Gia',
-                title: 'Quốc Gia'
+                name: 'Nation',
+                title: 'Nation'
             },
             {
-                name: 'Vai trò',
-                title: 'Vai trò'
+                name: 'Role',
+                title: 'Role'
             },
             {
-                name: 'Trạng Thái',
-                title: 'Trạng Thái'
+                name: 'Status',
+                title: 'Status'
             },
         ]
     }

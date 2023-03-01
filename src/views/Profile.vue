@@ -3,7 +3,7 @@
   <div class="w-full min-h-[100vh] pt-4 bg-[#ecf0f5]">
     <div class="w-[80%] mx-auto">
       <span class="text-2xl text-[#007199] uppercase font-bold"
-        >Thông Tin Cá Nhân
+        >{{$t('Profile')}}
       </span>
     </div>
     <Form
@@ -22,7 +22,7 @@
     >
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.first_name" :for="formSubmit.first_name">
-          Họ <span class="text-red-500">*</span></label
+          {{ $t('First Name') }} <span class="text-red-500">*</span></label
         >
         <Field
           name="first_name"
@@ -41,7 +41,7 @@
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.last_name" :for="formSubmit.last_name">
-          Tên <span class="text-red-500">*</span></label
+          {{$t('Last Name')}} <span class="text-red-500">*</span></label
         >
         <Field
           name="last_name"
@@ -80,7 +80,7 @@
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.phone1" :for="formSubmit.phone1">
-          Số ĐT 1 <span class="text-red-500">*</span>
+          {{$t('Phone 1')}} <span class="text-red-500">*</span>
           <ErrorMessage name="phone1" class="text-red-500" />
         </label>
         <Field
@@ -101,7 +101,7 @@
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.phone2" :for="formSubmit.phone2">
-          Số ĐT 2 <span class="text-red-500">*</span>
+          {{$t('Phone 2')}} <span class="text-red-500">*</span>
           <ErrorMessage name="phone2" class="text-red-500"
         /></label>
         <Field
@@ -122,7 +122,7 @@
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.address" :for="formSubmit.address">
-          Địa Chỉ <span class="text-red-500">*</span></label
+          {{$t('Address')}} <span class="text-red-500">*</span></label
         >
         <Field
           name="address"
@@ -141,7 +141,7 @@
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.city" :for="formSubmit.city">
-          Thành Phố <span class="text-red-500">*</span></label
+          {{$t('City')}} <span class="text-red-500">*</span></label
         >
         <Field
           name="city"
@@ -160,7 +160,7 @@
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.country" :for="formSubmit.country">
-          Quốc Gia <span class="text-red-500">*</span></label
+          {{$t('Nation')}} <span class="text-red-500">*</span></label
         >
         <Field
           name="country"
@@ -244,7 +244,7 @@ export default {
       };
       Service.setProfile(dataSubmit);
       this.isLoading = false;
-      swal2.success("Update profile successfully");
+      swal2.success(`${this.$t('Update')} ${this.$t('Profile')} ${this.$t('Successfully')}`);
     },
     validatePhone(value) {
       if (!value) {
@@ -253,7 +253,7 @@ export default {
       // if the field is not a valid
       const regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
       if (!regex.test(value)) {
-        return "(Số ĐT đã nhập không đúng định dạng)";
+        return `${this.$t('Phone')} ${this.$t('Wrong Format')}`
       }
       // All is good
       return true;

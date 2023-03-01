@@ -18,23 +18,23 @@ class Request {
         return [
             {
                 name: '#',
-                title: 'Số Thứ Tự'
+                title: 'Numerical'
             },
             {
-                name: 'Họ Tên',
-                title: 'Họ Và Tên'
+                name: 'Full Name',
+                title: 'Full Name'
             },
             {
                 name: 'Email',
                 title: 'Email'
             },
             {
-                name: 'Tiêu Đề',
-                title: 'Tiêu Đề'
+                name: 'Title',
+                title: 'Title'
             },
             {
-                name: 'Câu Hỏi',
-                title: 'Câu Hỏi'
+                name: 'Question',
+                title: 'Question'
             }
         ]
     }

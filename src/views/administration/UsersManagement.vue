@@ -1,17 +1,17 @@
 <template>
     <div class="w-full">
-        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Users Management</div>
+        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">{{$t('X Management', [$t('User')])}}</div>
         <button @click="showCreate" class=" m-2 md:m-4 rounded-lg text-white px-7 py-1 max-h-10 bg-[#438aab]">
-            😃 Tạo User
+            😃 {{$t('Create', [$t('User')])}}
         </button>
         <div class="overflow-x-scroll w-full h-[65vh]">
             <table class="w-full">
                 <thead>
                     <tr>
                         <th :title="field.title" v-for="(field, i) in fields" :key="i">
-                            {{ field.name }}
+                            {{ $t(field.name) }}
                         </th>
-                        <th title="Hành Động">Hành Động</th>
+                        <th title="Hành Động">{{$t('Action')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,7 +102,7 @@
                     </div>
                     <div v-if="isCreate" class="flex flex-col mb-4">
                         <label :title="FormData.password" :for="FormData.password">
-                            Password <span class="text-red-500">*</span>
+                            {{$t('Password')}} <span class="text-red-500">*</span>
                             <ErrorMessage name="password" class="text-red-500" />
                         </label>
                         <Field name="password" type="text" class="
@@ -114,7 +114,7 @@
                                 " :id="FormData.password" v-model="FormData.password" :rules="validatePassword" />
                     </div>
                     <div class="flex flex-wrap pb-4 w-full" v-if="isCreate">
-                        <span>Roles <span class="text-red-500">*</span>:</span>
+                        <span>{{$t('Role')}} <span class="text-red-500">*</span>:</span>
                         <div class="flex mx-4" v-for="(role, i) in listRoles" :key="role.id">
                             <input :id="role.name" :value="role.id" v-model="FormData.roles" type="checkbox"><label
                                 :for="role.name">{{ role.name }}</label>
@@ -129,11 +129,11 @@
                     </div>
                     <button v-if="isCreate" @click="createUser"
                         class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#338bad]">
-                        Tạo
+                        {{$t('Create', [$t('User')])}}
                     </button>
                     <button v-if="isUpdate" @click="updateUser"
                         class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#3cb138]">
-                        Sửa
+                        {{$t('Update')}}
                     </button>
                 </Form>
             </div>
@@ -214,21 +214,21 @@ export default {
         },
         async createUser() {
             if (this.FormData.email.trim() == '' || this.FormData.password.trim() == '')
-                return swal2.error('Hãy điền đầy đủ để tạo tài khoản!')
+                return swal2.error(`${this.$t('Enter To', [this.$t('All Field'), this.$t('Create')])}`)
             await service.register(this.FormData)
                 .then(res => {
                     this.close()
                     this.getList()
                     this.page = 1
-                    swal2.success('Tạo mới người dùng thành công')
+                    swal2.success(`${this.$t('Create', [this.$t('User')])} ${this.$t('Successfully')}`)
                 })
                 .catch(err => swal2(err))
         },
         async updateUser() {
             if (this.FormData.email.trim() == '')
-                return swal2.error('Hãy điền đầy đủ thông tin để cập nhật tài khoản!')
+                return swal2.error(`${this.$t('Enter To', [this.$t('All Field'), this.$t('Update')])}`)
             if (this.FormData.roles.length == 0)
-                return swal2.error('Hãy sử dụng ít nhất 1 role cho người dùng này!')
+                return swal2.error(this.$t('Please use at least 1 role for this user!'))
 
             const data = {
                 email: this.FormData.email,
@@ -236,7 +236,7 @@ export default {
             }
             await service.updateRoles(data, this.detailUser.id)
                 .then(res => {
-                    swal2.success('Chỉnh sửa người dùng thành công')
+                    swal2.success(`${this.$t('Update')} ${this.$t('Successfully')}`)
                     this.getList()
                     this.close()
                     this.page = 1
@@ -260,7 +260,7 @@ export default {
         },
         validateEmail(value) {
             if (!value) {
-                return '(Bắt buộc nhập)';
+                return `${this.$t('Required')}`;
             }
             // if the field is not a valid email
             // const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -271,7 +271,7 @@ export default {
         },
         validatePassword(value) {
             if (!value) {
-                return '(Bắt buộc nhập)'
+                return `${this.$t('Required')}`
             }
             return true
         }

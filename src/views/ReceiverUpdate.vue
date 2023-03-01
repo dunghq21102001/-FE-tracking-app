@@ -2,7 +2,7 @@
     <header-common></header-common>
     <div class="w-full min-h-[100vh] pt-4 bg-[#ecf0f5]">
         <div class="w-[80%] mx-auto flex justify-between mb-4">
-            <span class="text-2xl text-[#007199] uppercase font-bold">Chỉnh Sửa Người Nhận
+            <span class="text-2xl text-[#007199] uppercase font-bold">{{ $t('Update') }} {{ $t('Receiver') }}
             </span>
         </div>
         <div class="
@@ -17,7 +17,7 @@
             <Form class="flex flex-col mx-auto justify-around items-center w-[60%]" @submit="updateReceiver">
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.first_name" :for="formSubmit.first_name">
-                        Họ</label>
+                        {{ $t('First Name') }}</label>
                     <Field name="first_name" type="text" class="
                           w-full
                           mx-3
@@ -28,7 +28,7 @@
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.last_name" :for="formSubmit.last_name">
-                        Tên <span class="text-red-500">*</span>
+                        {{ $t('Last Name') }} <span class="text-red-500">*</span>
                         <ErrorMessage class="text-red-500" name="last_name"/>
                     </label>
                     <Field name="last_name" type="text" class="
@@ -42,7 +42,7 @@
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.phone1" :for="formSubmit.phone1">
-                        Số ĐT 1 
+                        {{ $t('Phone 1') }}
                         <ErrorMessage name="phone1" class="text-red-500" />
                     </label>
                     <Field name="phone1" type="text" class="
@@ -55,7 +55,7 @@
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.phone2" :for="formSubmit.phone2">
-                        Số ĐT 2 
+                        {{ $t('Phone 2') }} 
                         <ErrorMessage name="phone2" class="text-red-500" />
                     </label>
                     <Field name="phone2" type="text" class="
@@ -68,7 +68,7 @@
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.address" :for="formSubmit.address">
-                        Địa Chỉ <span class="text-red-500">*</span>
+                        {{ $t('Address') }} <span class="text-red-500">*</span>
                         <ErrorMessage class="text-red-500" name="address"/></label>
                     <Field name="address" type="text" class="
                           w-full
@@ -81,7 +81,7 @@
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.city" :for="formSubmit.city">
-                        Thành Phố <span class="text-red-500">*</span>
+                        {{ $t('City') }} <span class="text-red-500">*</span>
                         <ErrorMessage class="text-red-500" name="city"/></label>
                     <Field name="city" type="text" class="
                           w-full
@@ -94,7 +94,7 @@
                 </div>
                 <div class="flex flex-col mb-4 w-full">
                     <label :title="formSubmit.country" :for="formSubmit.country">
-                        Quốc Gia <span class="text-red-500">*</span>
+                        {{ $t('Nation') }} <span class="text-red-500">*</span>
                         <ErrorMessage class="text-red-500" name="country"/></label>
                     <Field name="country" type="text" class="
                           w-full
@@ -107,11 +107,11 @@
                 </div>
                 <div class="w-[250px] flex justify-around">
                     <button type="submit" class="rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
-                        Lưu
+                        {{ $t('Save') }}
                     </button>
                     <router-link :to="{name: 'receiver'}">
                         <button class="rounded-sm text-white px-7 py-1 max-h-10 bg-red-600">
-                            Huỷ
+                            {{ $t('Cancel') }}
                         </button>
                     </router-link>
                 </div>
@@ -159,21 +159,21 @@ export default {
             // if the field is not a valid
             const regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
             if (!regex.test(value)) {
-                return "(Số ĐT đã nhập không đúng định dạng)";
+                return `${this.$t('Phone')} ${this.$t('Wrong Format')}`
             }
             // All is good
             return true;
         },
         validateEmpty(value) {
             if(!value) {
-                return 'Không được bỏ trống trường này'
+                return this.$t('This field cannot be left blank')
             }
             return true;
         },
         async updateReceiver() {
             await Service.updateReceiver(this.formSubmit, this.formSubmit.id)
                 .then(res => {
-                    swal2.success('Updated Receiver Successfully')
+                    swal2.success(`${$t('Update')} ${this.$t('Successfully')}`)
                     this.$router.push({ name: 'receiver' })
                 })
                 .catch(err => swal2.error(err))

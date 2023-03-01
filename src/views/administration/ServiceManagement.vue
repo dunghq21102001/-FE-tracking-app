@@ -1,10 +1,10 @@
 <template>
     <div class="w-full">
-        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">Service Management</div>
+        <div class="bg-[#289ae7] text-center text-2xl text-white pb-4 pt-11 md:py-4">{{$t('X Management', [$t('Service')])}}</div>
     </div>
 
     <button @click="showCreate" class=" m-2 md:m-4 rounded-lg text-white px-7 py-1 max-h-10 bg-[#438aab]">
-        😃 Tạo Dịch Vụ
+        😃 {{$t('Create', [$t('Service')])}}
     </button>
 
     <div class="mt-5 w-full overflow-x-scroll h-[60vh]">
@@ -12,13 +12,13 @@
             <thead class="sticky top-0 left-0 bg-[#f37070]">
                 <tr>
                     <th>
-                        Tên
+                        {{ $t('Name') }}
                     </th>
                     <th>
-                        Mô Tả
+                        {{ $t('Description') }}
                     </th>
                     <th>
-                        Hành Động
+                        {{ $t('Action') }}
                     </th>
                 </tr>
             </thead>
@@ -62,7 +62,7 @@
                 <Form class="flex flex-col justify-around items-center" @submit="submitForm">
                     <div class="flex flex-col mb-4">
                         <label :title="formData.name" :for="formData.name">
-                            Name 
+                            {{ $t('Name') }} 
                             <ErrorMessage name="name" class="text-red-500" />
                         </label>
                         <Field name="name" type="text" class="
@@ -75,7 +75,7 @@
                     </div>
                     <div class="flex flex-col mb-4">
                         <label :title="formData.description" :for="formData.description">
-                            Description <span class="text-red-500">*</span>
+                            {{ $t('Description') }} <span class="text-red-500">*</span>
                             <ErrorMessage name="description" class="text-red-500" />
                         </label>
                         <Field name="description" type="text" v-slot="{ field, errors }" class="" :id="formData.description" 
@@ -89,10 +89,10 @@
                         </Field>
                     </div>
                     <button v-if="isCreate" @click="create" class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#338bad]">
-                        Tạo
+                        {{ $t('Create', [$t('Service')]) }}
                     </button>
                     <button v-if="isUpdate" @click="update" class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#3cb138]">
-                        Sửa
+                        {{ $t('Update') }}
                     </button>
                 </Form>
             </div>
@@ -153,10 +153,10 @@ export default {
             this.formData.description = this.currentService.description
         },
         async create() {
-            if(this.formData.description.trim() == '') return swal2.error('Phải nhập mô tả để tạo 1 dịch vụ')
+            if(this.formData.description.trim() == '') return swal2.error(`${this.$t('Enter To', [this.$t('Description'), this.$t('Create')])}`)
             await service.createService(this.formData)
                 .then(res => {
-                    swal2.success('Tạo mới 1 dịch vụ thành công')
+                    swal2.success(`${this.$t('Create', [this.$t('Service')])} ${this.$t('Successfully')}`)
                     this.page = 1
                     this.getList()
                     this.close()
@@ -164,10 +164,10 @@ export default {
                 .catch(err => swal2.error(err))
         },
         async update() {
-            if(this.formData.description.trim() == '') return swal2.error('Phải nhập mô tả để sửa 1 dịch vụ')
+            if(this.formData.description.trim() == '') return swal2.error(`${this.$t('Enter To', [this.$t('Description'), this.$t('Update')])}`)
             await service.updateService(this.formData, this.currentService.id)
                 .then(res => {
-                    swal2.success('Chỉnh sửa dịch vụ thành công')
+                    swal2.success(`${this.$t('Update')} ${this.$t('Successfully')}`)
                     this.page = 1
                     this.getList()
                     this.close()
@@ -179,7 +179,7 @@ export default {
             if (result.value) {
             service.deleteService(id)
               .then(res => {
-                swal2.success('Xoá dịch vụ thành công')
+                swal2.success(`${this.$t('Delete')} ${this.$t('Successfully')}`)
                 this.getList()
                 this.page = 1
               })
@@ -202,7 +202,7 @@ export default {
         },
         validateEmpty(value) {
             if(!value) {
-            return 'Không được bỏ trống trường này'
+            return `${this.$t('This field cannot be left blank')}`
             }
             return true;
         },
