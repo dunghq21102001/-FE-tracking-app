@@ -168,6 +168,8 @@ export default {
       });
     },
     async createTracking() {
+      if(this.formCreate.bol_id.trim() == '') return swal2.error('Phải nhập mã vận đơn để tạo tracking')
+      if(this.currentReceiver == null) return swal2.error('Phải chọn người nhận để tạo tracking')
       const dataCreate = {
         receiver_id: this.currentReceiver[0].id,
         bol_id: this.formCreate.bol_id,

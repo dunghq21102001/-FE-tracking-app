@@ -254,8 +254,10 @@ export default {
         if (result.value) {
           Service.deleteReceiver(id)
             .then((res) => {
+              if(res.data.error) {
+                swal2.error(res.data.error)
+              } else swal2.success(`Xoá ${name} thành công`);
               this.getList();
-              swal2.success(`Delete ${name} successfully`);
             })
             .catch((err) => swal2.error("Something went wrong!"));
         }
