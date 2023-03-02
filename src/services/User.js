@@ -46,7 +46,7 @@ class User {
     static fields() {
         return [
             {
-                name: '#',
+                name: 'Numerical',
                 title: 'Numerical'
             },
             {

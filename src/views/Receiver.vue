@@ -255,7 +255,7 @@ export default {
           Service.deleteReceiver(id)
             .then((res) => {
               if(res.data.error) {
-                swal2.error(res.data.error)
+                swal2.error(`${this.$t('This recipient cannot be deleted because it exists in tracking')}`)
               } else swal2.success(`${this.$t('Delete')} ${name} ${this.$t('Successfully')}`);
               this.getList();
             })

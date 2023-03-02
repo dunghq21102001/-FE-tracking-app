@@ -17,7 +17,7 @@ class Request {
     static fields() {
         return [
             {
-                name: '#',
+                name: 'Numerical',
                 title: 'Numerical'
             },
             {
