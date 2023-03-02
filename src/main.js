@@ -21,7 +21,6 @@ import * as directives from 'vuetify/directives'
 import Paginate from "vuejs-paginate-next";
 
 
-
 window.API = API
 window.axios = axios
 window.axios.defaults.headers.common = { 'Authorization': `bearer ${localStorage.getItem("token")}` };
