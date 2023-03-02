@@ -173,7 +173,7 @@ export default {
         async updateReceiver() {
             await Service.updateReceiver(this.formSubmit, this.formSubmit.id)
                 .then(res => {
-                    swal2.success(`${$t('Update')} ${this.$t('Successfully')}`)
+                    swal2.success(`${this.$t('Update')} ${this.$t('Successfully')}`)
                     this.$router.push({ name: 'receiver' })
                 })
                 .catch(err => swal2.error(err))

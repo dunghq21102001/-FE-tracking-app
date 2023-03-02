@@ -16,6 +16,7 @@
     "Service": "Service",
     "Guild": "Guild",
     "Contact": "Contact",
+    "Email": "Email",
     "User": "User",
     "Role": "Role",
     "Permission": "Permission",
@@ -81,5 +82,6 @@
     "To View Details Tracking Status. Please click on the Status box of each Tracking Number line above!": "To View Details Tracking Status. Please click on the Status box of each Tracking Number line above!",
     "Tracking can only be edited/canceled in a new state!": "Tracking can only be edited/canceled in a new state! (new)",
     "Please use at least 1 role for this user!": "Please use at least 1 role for this user!",
-    "Unable to delete recipients with tracking": "Unable to delete recipients with tracking"
+    "Unable to delete recipients with tracking": "Unable to delete recipients with tracking",
+    "This recipient cannot be deleted because it exists in tracking": "This recipient cannot be deleted because it exists in tracking"
 }

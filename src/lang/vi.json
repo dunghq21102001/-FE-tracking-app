@@ -21,6 +21,7 @@
     "Permission": "Quyền",
     "Grant": "Cấp Quyền",
     "Request": "Yêu Cầu",
+    "Email": "Email",
     "Popular Services": "Các Dịch Vụ Phổ Biến",
     "Search": "Tìm Kiếm",
     "Send": "Gửi",
@@ -82,5 +83,6 @@
     "To View Details Tracking Status. Please click on the Status box of each Tracking Number line above!": "Để Xem chi tiết Trạng Thái Tracking. Quý Khách hãy click vào ô Trạng Thái của mỗi dòng Tracking Number bên trên!",
     "Tracking can only be edited/canceled in a new state!": "Chỉ có thể sửa / huỷ tracking ở trạng thái mới (new)!",
     "Please use at least 1 role for this user!": "Hãy sử dụng ít nhất 1 role cho người dùng này!",
-    "Unable to delete recipients with tracking": "Không thể xoá người nhận đang có tracking"
+    "Unable to delete recipients with tracking": "Không thể xoá người nhận đang có tracking",
+    "This recipient cannot be deleted because it exists in tracking": "Không thể xoá người nhận này vì đang sử dụng trong tracking"
 }

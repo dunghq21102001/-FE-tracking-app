@@ -22,7 +22,7 @@
     >
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.first_name" :for="formSubmit.first_name">
-          {{ $t('First Name') }} <span class="text-red-500">*</span></label
+          {{ $t('First Name') }}</label
         >
         <Field
           name="first_name"
@@ -41,7 +41,8 @@
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.last_name" :for="formSubmit.last_name">
-          {{$t('Last Name')}} <span class="text-red-500">*</span></label
+          {{$t('Last Name')}} <span class="text-red-500">*</span>
+          <ErrorMessage class="text-red-500" name="last_name"/></label
         >
         <Field
           name="last_name"
@@ -56,10 +57,13 @@
           "
           :id="formSubmit.last_name"
           v-model="formSubmit.last_name"
+          :rules="validateEmpty"
         />
       </div>
       <div class="flex flex-col mb-4">
-        <label :title="formSubmit.email" :for="formSubmit.email"> Email </label>
+        <label :title="formSubmit.email" :for="formSubmit.email"> Email
+        <span class="text-red-500">*</span><ErrorMessage class="text-red-500" name="email"/> 
+        </label>
         <Field
           name="email"
           disabled
@@ -76,6 +80,7 @@
           "
           :id="formSubmit.email"
           v-model="formSubmit.email"
+          :rules="validateEmpty"
         />
       </div>
       <div class="flex flex-col mb-4">
@@ -122,7 +127,9 @@
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.address" :for="formSubmit.address">
-          {{$t('Address')}} <span class="text-red-500">*</span></label
+          {{$t('Address')}} <span class="text-red-500">*</span>
+          <ErrorMessage class="text-red-500" name="address"/>
+          </label
         >
         <Field
           name="address"
@@ -137,11 +144,12 @@
           "
           :id="formSubmit.address"
           v-model="formSubmit.address"
+          :rules="validateEmpty"
         />
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.city" :for="formSubmit.city">
-          {{$t('City')}} <span class="text-red-500">*</span></label
+          {{$t('City')}}</label
         >
         <Field
           name="city"
@@ -160,7 +168,7 @@
       </div>
       <div class="flex flex-col mb-4">
         <label :title="formSubmit.country" :for="formSubmit.country">
-          {{$t('Nation')}} <span class="text-red-500">*</span></label
+          {{$t('Nation')}}</label
         >
         <Field
           name="country"
@@ -256,6 +264,12 @@ export default {
         return `${this.$t('Phone')} ${this.$t('Wrong Format')}`
       }
       // All is good
+      return true;
+    },
+    validateEmpty(value) {
+      if(!value) {
+        return this.$t('This field cannot be left blank')
+      }
       return true;
     },
   },

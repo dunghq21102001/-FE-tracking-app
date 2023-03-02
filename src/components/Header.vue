@@ -193,7 +193,7 @@ export default {
         .then((res) => {
           localStorage.removeItem("token");
           this.$router.push({ name: "login" });
-          swal2.success("Logout successfully");
+          swal2.success(`${this.$t('Logout')} ${this.$t('Successfully')}`);
         })
         .catch((e) => {
           console.log(e);
