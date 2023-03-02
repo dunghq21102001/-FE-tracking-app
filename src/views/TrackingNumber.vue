@@ -2,17 +2,17 @@
   <header-common></header-common>
   <div class="w-full min-h-[100vh] pt-4 bg-[#ecf0f5]">
     <div class="
-        mx-auto
-        w-[90%]
-        lg:w-[80%]
-        bg-white
-        border-t-[4px] border-blue-400 border-solid
-      ">
+          mx-auto
+          w-[90%]
+          lg:w-[80%]
+          bg-white
+          border-t-[4px] border-blue-400 border-solid
+        ">
       <TrackingHeader @searchBOL="searchBOL"></TrackingHeader>
       <div class="flex md:block justify-center ml-5 mb-5">
         <button @click="resetList" class="ml-0 md:ml-5 mt-5 rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
-        {{$t('Reset')}} {{$t('List')}}
-      </button>
+          {{ $t('Reset') }} {{ $t('List') }}
+        </button>
       </div>
       <div class="w-full overflow-x-scroll h-[65vh]">
         <table class="w-full">
@@ -21,12 +21,12 @@
               <th class="font-bold py-3" v-for="(field, index) in fields" :key="index" :title="field.title">
                 {{ $t(field.name) }}
               </th>
-              <th class="font-bold py-3">{{$t('Action')}}</th>
+              <th class="font-bold py-3">{{ $t('Action') }}</th>
             </tr>
           </thead>
           <tbody>
             <tr v-if="trackingList.length == 0">
-              <td class="text-center" colspan="8">{{$t('No Data Available')}}</td>
+              <td class="text-center" colspan="8">{{ $t('No Data Available') }}</td>
             </tr>
             <tr v-for="(t, i) in trackingList" :key="t.id" :class="i % 2 == 0 ? 'bg-gray-200' : ''">
               <td>
@@ -36,7 +36,7 @@
                 <div class="w-[150px]">{{ t.delivery_note }}</div>
               </td>
               <td>
-                <router-link :to="{name: 'eventTrackingDetail', params: {id: t.id}}">
+                <router-link :to="{ name: 'eventTrackingDetail', params: { id: t.id } }">
                   <div class="w-[150px] uppercase text-center cursor-pointer" :class="getStatusColor(t.status)">
                     <span>{{ t.status }}</span>
                   </div>
@@ -58,14 +58,18 @@
                 <div class="w-[150px]">{{ t.note }}</div>
               </td>
               <td>
-                <div class="w-[300px] flex justify-around">
+                <div class="w-[450px] flex justify-around">
+                  <button @click="trackingActions('print', t.id, t.status)"
+                    class="rounded-sm text-white px-7 py-1 max-h-10 bg-orange-600">
+                    {{ $t('Print') }} {{ $t('Shipping Label') }}
+                  </button>
                   <button @click="trackingActions('update', t.id, t.status)"
                     class="rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
-                    {{$t('Update')}}
+                    {{ $t('Update') }}
                   </button>
                   <button @click="trackingActions('delete', t.id, t.status)"
                     class="rounded-sm text-white px-7 py-1 max-h-10 bg-red-600">
-                    {{$t('Cancel')}}
+                    {{ $t('Cancel') }}
                   </button>
                 </div>
               </td>
@@ -79,15 +83,15 @@
       </paginate>
 
       <div class="
-          w-full
-          bg-[#00c0ef]
-          text-white
-          border-l-[4px] border-solid border-[#0097bc]
-          py-6
-          px-2
-          mt-6
-                ">
-        ⚠️ {{$t('To View Details Tracking Status. Please click on the Status box of each Tracking Number line above!')}}
+            w-full
+            bg-[#00c0ef]
+            text-white
+            border-l-[4px] border-solid border-[#0097bc]
+            py-6
+            px-2
+            mt-6
+                  ">
+        ⚠️ {{ $t('To View Details Tracking Status. Please click on the Status box of each Tracking Number line above!') }}
       </div>
     </div>
   </div>
@@ -138,9 +142,12 @@ export default {
     },
     trackingActions(type, id, status) {
       if (status != 'new')
-        return swal2.error(`${this.$t('Tracking can only be edited/canceled in a new state!')}`)
+        return swal2.error(`${this.$t('Can only actions on new tracking')}`)
       if (type == 'update') {
         this.$router.push({ name: 'tracking-number-update', params: { id: id } })
+      }
+      if (type == 'print') {
+        this.$router.push({ name: 'shipping-label', params: { id: id } })
       } else {
         swal2.confirm("delete").then((result) => {
           if (result.value) {
@@ -159,13 +166,13 @@ export default {
         case 'new':
           return commonCss + ' bg-orange-600'
         case 'received':
-          return commonCss + ' bg-green-500'  
+          return commonCss + ' bg-green-500'
         case 'shipping':
-          return commonCss + ' bg-blue-400'  
+          return commonCss + ' bg-blue-400'
         case 'flying':
-          return commonCss + ' bg-red-700' 
+          return commonCss + ' bg-red-700'
         case 'Processing':
-          return commonCss + ' bg-pink-600'    
+          return commonCss + ' bg-pink-600'
         case 'canceled':
           return commonCss + ' bg-gray-500'
         default:
@@ -182,7 +189,7 @@ export default {
       let tmpList = []
       if (this.searchTracking != null
         && this.searchTracking != ''
-        || (this.fromDate != null && this.toDate != null) ) {
+        || (this.fromDate != null && this.toDate != null)) {
         await axios.get(API.tracking + '/search',
           {
             params: {
