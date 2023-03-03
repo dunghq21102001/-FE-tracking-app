@@ -97,5 +97,6 @@
     "Can only actions on new tracking": "Can only actions on new tracking",
     "Please use at least 1 role for this user!": "Please use at least 1 role for this user!",
     "Unable to delete recipients with tracking": "Unable to delete recipients with tracking",
-    "This recipient cannot be deleted because it exists in tracking": "This recipient cannot be deleted because it exists in tracking"
+    "This recipient cannot be deleted because it exists in tracking": "This recipient cannot be deleted because it exists in tracking",
+    "You are not authorized to take action": "You are not authorized to take action"
 }

@@ -238,7 +238,13 @@ export default {
                     this.formSubmit.to_address = res.data.tracking.receiver.address
                     this.formSubmit.bol_code = res.data.tracking.bol_id
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         submit(value) {
             this.isShow = true

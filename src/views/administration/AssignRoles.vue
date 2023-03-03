@@ -58,7 +58,13 @@ export default {
                 .then(res => {
                     this.roleList = res.data.roles
                 })
-                .catch(err => swal2.error(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         async getPermissionList() {
             await permissionService.getPermissionList()
@@ -66,7 +72,13 @@ export default {
                     this.permissionList = res.data.permissions
                     this.getPermissionNameList()
                 })
-                .catch(err => swal2.error(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         getPermissionNameList() {
             for (let per of this.permissionList) {
@@ -112,7 +124,13 @@ export default {
                     this.getPermissionList()
                     this.getRoleList()
                 })
-                .catch(err => swal2.error(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         }
     },
     watch: {

@@ -250,9 +250,19 @@ export default {
         city: this.formSubmit.city,
         country: this.formSubmit.country,
       };
-      Service.setProfile(dataSubmit);
+      Service.setProfile(dataSubmit)
+        .then(res => {
+          swal2.success(`${this.$t('Update')} ${this.$t('Profile')} ${this.$t('Successfully')}`);
+        })
+        .catch(err => {
+          if(err.response.data.message 
+          && err.response.data.message == 'You are not allowed'){
+            swal2.error(`${this.$t('You are not authorized to take action')}`)
+            this.$router.push({ name: "error" });
+          }
+        })
       this.isLoading = false;
-      swal2.success(`${this.$t('Update')} ${this.$t('Profile')} ${this.$t('Successfully')}`);
+      
     },
     validatePhone(value) {
       if (!value) {
