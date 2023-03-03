@@ -125,7 +125,7 @@ export default {
                 .catch(err => swal2(err))
         },
         deleteRole(id) {
-            swal2.confirm("delete").then((result) => {
+            swal2.confirm(`${this.$t('Delete')}`, `${this.$t('Are you sure you want to')}`).then((result) => {
                 if (result.value) {
                     service.deleteRole(id)
                         .then((res) => {

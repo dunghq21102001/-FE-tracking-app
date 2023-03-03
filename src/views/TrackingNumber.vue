@@ -149,7 +149,7 @@ export default {
       if (type == 'print') {
         this.$router.push({ name: 'shipping-label', params: { id: id } })
       } else {
-        swal2.confirm("delete").then((result) => {
+        swal2.confirm(`${this.$t('Delete')}`, `${this.$t('Are you sure you want to')}`).then((result) => {
           if (result.value) {
             Service.cancelTracking(id)
               .then(res => {
