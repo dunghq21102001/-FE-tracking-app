@@ -255,7 +255,9 @@ function nextFactory(context, middleware, index) {
   };
 }
 
+const defaultTitle = import.meta.env.VITE_DEFAULT_TITLE
 router.beforeEach((to, from, next) => {
+  document.title = to.name.toUpperCase() || defaultTitle
   if (to.meta.middleware) {
     const middleware = Array.isArray(to.meta.middleware)
       ? to.meta.middleware

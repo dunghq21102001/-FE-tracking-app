@@ -151,8 +151,7 @@ export default {
         return swal2.error(`${this.$t('Can only actions on new tracking')}`)
       if (type == 'update') {
         this.$router.push({ name: 'tracking-number-update', params: { id: id } })
-      }
-      if (type == 'print') {
+      } else if (type == 'print') {
         this.$router.push({ name: 'shipping-label', params: { id: id } })
       } else {
         swal2.confirm(`${this.$t('Delete')}`, `${this.$t('Are you sure you want to')}`).then((result) => {
