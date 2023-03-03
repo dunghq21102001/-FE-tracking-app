@@ -33,9 +33,9 @@ class swal {
             }
         })
     }
-    static confirm(type) {
+    static confirm(type, mess = '') {
         return swal2.fire({
-            text: `Are you sure you want to ${type == 'delete' ? 'delete' : 'cancel'}`,
+            text: `${mess} ${type}`,
             icon: "warning",
             cancelButtonText: 'No',
             showCancelButton: true,

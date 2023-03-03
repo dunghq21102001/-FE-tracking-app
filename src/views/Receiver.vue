@@ -250,7 +250,7 @@ export default {
       this.$router.push({ name: 'receiver-update', params: {id: id} })
     },
     deleteReceiver(id, name) {
-      swal2.confirm("delete").then((result) => {
+      swal2.confirm(`${this.$t('Delete')}`, `${this.$t('Are you sure you want to')}`).then((result) => {
         if (result.value) {
           Service.deleteReceiver(id)
             .then((res) => {

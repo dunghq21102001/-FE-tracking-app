@@ -76,7 +76,7 @@ export default {
         },
         deleteRequest(id) {
 
-            swal2.confirm("delete").then((result) => {
+            swal2.confirm(`${this.$t('Delete')}`, `${this.$t('Are you sure you want to')}`).then((result) => {
                 if (result.value) {
                     Service.deleteRequest(id)
                         .then(res => {

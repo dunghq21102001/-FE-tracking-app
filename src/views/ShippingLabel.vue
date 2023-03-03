@@ -182,8 +182,8 @@
                     <div class="p-3 w-full flex flex-col">
                         <h1><span class="font-bold">Carrier</span>: <span>{{ formSubmit.carrier }}</span></h1>
                         <h1><span class="font-bold">Date: </span>: <span>{{ currentDate }}</span></h1>
-                        <h1><span class="font-bold">Container No.</span>: <span>None</span></h1>
-                        <h1><span class="font-bold">{{ $t('License Plates') }}</span>: <span>None</span></h1>
+                        <h1><span class="font-bold">Container No.</span>: <span></span></h1>
+                        <h1><span class="font-bold">{{ $t('License Plates') }}</span>: <span></span></h1>
                     </div>
                 </div>
                 <div class="w-full flex justify-center fixed bottom-[80px]">
