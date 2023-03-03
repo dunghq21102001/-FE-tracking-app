@@ -1,7 +1,6 @@
 <template>
   <div class="bg-[#ecf0f5] pb-6">
     <header-common></header-common>
-    <!-- <p>{{ $t("message.hello") }}</p> -->
     <slider></slider>
     <service></service>
     <BOL></BOL>

@@ -89,7 +89,13 @@ export default {
                     this.getList()
                     this.close()
                 })
-                .catch(er => swal2.error(er))
+                .catch(er => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         deletePer(id) {
             swal2.confirm(`${this.$t('Delete')}`, `${this.$t('Are you sure you want to')}`).then((result) => {
@@ -101,7 +107,13 @@ export default {
                             this.getList()
                             swal2.success(`${this.$t('Delete')} ${this.$t('Successfully')}`);
                         })
-                        .catch((err) => swal2.error(err));
+                        .catch((err) => {
+                            if(err.response.data.message 
+                            && err.response.data.message == 'You are not allowed'){
+                                swal2.error(`${this.$t('You are not authorized to take action')}`)
+                                this.$router.push({ name: "error" });
+                            }
+                        });
                 }
             });
         },

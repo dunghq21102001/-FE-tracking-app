@@ -112,7 +112,13 @@ export default {
                     this.getList()
                     this.close()
                 })
-                .catch(err => swal2(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         async updateRole() {
             if(this.formData.name.trim() == '') return swal2.error(`${this.$t('Enter To', [this.$t('All Field'), this.$t('Update')])}`)
@@ -122,7 +128,13 @@ export default {
                     this.getList()
                     this.close()
                 })
-                .catch(err => swal2(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         deleteRole(id) {
             swal2.confirm(`${this.$t('Delete')}`, `${this.$t('Are you sure you want to')}`).then((result) => {
@@ -134,7 +146,13 @@ export default {
                             this.getList()
                             swal2.success(`${this.$t('Delete')} ${this.$t('Successfully')}`);
                         })
-                        .catch((err) => swal2.error(err));
+                        .catch((err) => {
+                            if(err.response.data.message 
+                            && err.response.data.message == 'You are not allowed'){
+                                swal2.error(`${this.$t('You are not authorized to take action')}`)
+                                this.$router.push({ name: "error" });
+                            }
+                        });
                 }
             });
         },

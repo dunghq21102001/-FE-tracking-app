@@ -187,7 +187,13 @@ export default {
                     this.totalPage = res.data.last_page
                     this.listUsers = res.data.data
                 })
-                .catch(err => swal2.error(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
             await rolesService.getList()
                 .then(res => {
                     this.listRoles = res.data.roles
@@ -222,7 +228,13 @@ export default {
                     this.page = 1
                     swal2.success(`${this.$t('Create', [this.$t('User')])} ${this.$t('Successfully')}`)
                 })
-                .catch(err => swal2(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         async updateUser() {
             if (this.FormData.email.trim() == '')
@@ -241,7 +253,13 @@ export default {
                     this.close()
                     this.page = 1
                 })
-                .catch(err => swal2.error(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         submitForm() { },
         close() {

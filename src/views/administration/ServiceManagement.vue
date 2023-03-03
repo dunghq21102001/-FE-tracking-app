@@ -139,7 +139,13 @@ export default {
                     this.listService = res.data.data
                     this.totalPage = res.data.last_page
                 })
-                .catch(err => swal2.error(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         showCreate() {
             this.isShow = true
@@ -161,7 +167,13 @@ export default {
                     this.getList()
                     this.close()
                 })
-                .catch(err => swal2.error(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         async update() {
             if(this.formData.description.trim() == '') return swal2.error(`${this.$t('Enter To', [this.$t('Description'), this.$t('Update')])}`)
@@ -172,7 +184,13 @@ export default {
                     this.getList()
                     this.close()
                 })
-                .catch(err => swal2.error(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         deleteService(id) { 
             swal2.confirm(`${this.$t('Delete')}`, `${this.$t('Are you sure you want to')}`).then((result) => {

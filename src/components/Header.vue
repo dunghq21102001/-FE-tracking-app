@@ -67,7 +67,8 @@
           image="https://t3.ftcdn.net/jpg/02/09/37/00/360_F_209370065_JLXhrc5inEmGl52SyvSPeVB23hB6IjrR.jpg"
           size="40"></v-avatar>
         <h1 class="text-white ml-2">
-          {{ user.email ? user.email : "Guest" }}
+          <!-- {{ user.email ? user.email : "Guest" }} -->
+          {{ authStore.getUser.email ? authStore.getUser.email : "Guest" }}
         </h1>
         <div v-if="openMenu" class="
               absolute
@@ -206,7 +207,7 @@ export default {
       this.openMenu = false
     },
     checkAdminRole() {
-      if (this.user.roles == null || this.user.roles == undefined) {
+      if (!this.user || (this.user.roles == null || this.user.roles == undefined)) {
         localStorage.removeItem('token');
         swal2.error('Token không hợp lệ!', 3000)
         window.location.href = "/login";

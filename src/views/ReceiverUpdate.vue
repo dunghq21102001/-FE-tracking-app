@@ -150,7 +150,13 @@ export default {
                 .then(res => {
                     this.formSubmit = _.cloneDeep(res.data.receiver);
                 })
-                .catch(error => swal2.error(error))
+                .catch(error => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         },
         validatePhone(value) {
             if (!value) {
@@ -176,7 +182,13 @@ export default {
                     swal2.success(`${this.$t('Update')} ${this.$t('Successfully')}`)
                     this.$router.push({ name: 'receiver' })
                 })
-                .catch(err => swal2.error(err))
+                .catch(err => {
+                    if(err.response.data.message 
+                    && err.response.data.message == 'You are not allowed'){
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        this.$router.push({ name: "error" });
+                    }
+                })
         }
     }
 }

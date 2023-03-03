@@ -75,7 +75,13 @@ export default {
             question: ''
           }
         })
-        .catch(err => swal2.error(err))
+        .catch(err => {
+          if(err.response.data.message 
+          && err.response.data.message == 'You are not allowed'){
+            swal2.error(`${this.$t('You are not authorized to take action')}`)
+            this.$router.push({ name: "error" });
+          }  
+        })
     }
   }
 };
