@@ -74,7 +74,7 @@ const router = createRouter({
     },
     {
       path: '/event-tracking/detail/:id',
-      name: 'eventTrackingDetail',
+      name: 'eventTracking-detail',
       component: EventTrackingDetail,
       meta: {
         middleware: auth

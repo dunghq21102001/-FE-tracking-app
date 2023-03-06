@@ -36,7 +36,7 @@
                 <div class="w-[150px]">{{ t.delivery_note }}</div>
               </td>
               <td>
-                <router-link :to="{ name: 'eventTrackingDetail', params: { id: t.id } }">
+                <router-link :to="{ name: 'eventTracking-detail', params: { id: t.id } }">
                   <div class="w-[150px] uppercase text-center cursor-pointer" :class="getStatusColor(t.status)">
                     <span>{{ t.status }}</span>
                   </div>
