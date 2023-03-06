@@ -12,91 +12,47 @@
             <img src="../assets/1.jpg" class="w-full block mx-auto mt-5" alt="">
 
             <!-- timeline2 -->
-            <v-timeline side="end" align="start">
-                <v-timeline-item dot-color="pink" size="small">
-                    <div class="d-flex">
-                        <strong class="me-4">5pm</strong>
-                        <div>
-                            <strong>New Icon</strong>
-                        </div>
+            <div class="flex items-center mx-auto w-[80%] justify-around">
+                <div class="line">
+                    <div class="circle">✔️</div>
+                    <div class="circle">✔️</div>
+                    <div class="circle">✔️</div>
+                    <div class="circle">✔️</div>
+                    <div class="circle">✔️</div>
+                    <div class="circle">✔️</div>
+                    <div class="circle">✔️</div>
+                </div>
+                <div class="flex flex-col h-[1000px] justify-around items-center w-[90%]">
+                    <div class="custom-content flex-col sm:flex-row">
+                        <p class="text-[16px]"><span class="text-[#3c8dbc]">TRÊN ĐƯỜNG ĐẾN TEXAS UPS</span> đang chuyển kiện hàng tới kho của công ty ở Texas</p>
+                        <span class="text-[12px] text-[#999]">📅</span>
                     </div>
-                </v-timeline-item>
-
-                <v-timeline-item dot-color="teal-lighten-3" size="small">
-                    <div class="d-flex">
-                        <strong class="me-4">3-4pm</strong>
-                        <div>
-                            <strong>Design Stand Up</strong>
-                        </div>
+                    <div class="custom-content flex-col sm:flex-row">
+                        <p class="text-[16px]"><span class="text-[#3c8dbc]">TRÊN ĐƯỜNG ĐẾN TEXAS UPS</span> Texas</p>
+                        <span class="text-[12px] text-[#999]">📅</span>
                     </div>
-                </v-timeline-item>
-                <v-timeline-item dot-color="teal-lighten-3" size="small">
-                    <div class="d-flex">
-                        <strong class="me-4">9-11am</strong>
-                        <div>
-                            <strong>Finish Home Screen</strong>
-                            <!-- <div class="text-caption">
-                                Web App
-                            </div> -->
-                        </div>
+                    <div class="custom-content flex-col sm:flex-row">
+                        <p class="text-[16px]"><span class="text-[#3c8dbc]">TRÊN ĐƯỜNG ĐẾN TEXAS UPS</span> Texas</p>
+                        <span class="text-[12px] text-[#999]">📅</span>
                     </div>
-                </v-timeline-item>
-                <v-timeline-item dot-color="pink" size="small">
-                    <div class="d-flex">
-                        <strong class="me-4">5pm</strong>
-                        <div>
-                            <strong>New Icon</strong>
-                        </div>
+                    <div class="custom-content flex-col sm:flex-row">
+                        <p class="text-[16px]"><span class="text-[#3c8dbc]">TRÊN ĐƯỜNG ĐẾN TEXAS UPS</span> Texas</p>
+                        <span class="text-[12px] text-[#999]">📅</span>
                     </div>
-                </v-timeline-item>
-                <v-timeline-item dot-color="teal-lighten-3" size="small">
-                    <div class="d-flex">
-                        <strong class="me-4">3-4pm</strong>
-                        <div>
-                            <strong>Design Stand Up</strong>
-                        </div>
+                    <div class="custom-content flex-col sm:flex-row">
+                        <p class="text-[16px]"><span class="text-[#3c8dbc]">TRÊN ĐƯỜNG ĐẾN TEXAS UPS</span> đang chuyển kiện hàng tới kho của công ty ở Texas</p>
+                        <span class="text-[12px] text-[#999]">📅</span>
                     </div>
-                </v-timeline-item>
-                <v-timeline-item dot-color="teal-lighten-3" size="small">
-                    <div class="d-flex">
-                        <strong class="me-4">9-11am</strong>
-                        <div>
-                            <strong>Finish Home Screen</strong>
-                            <!-- <div class="text-caption">
-                                Web App
-                            </div> -->
-                        </div>
+                    <div class="custom-content flex-col sm:flex-row">
+                        <p class="text-[16px]"><span class="text-[#3c8dbc]">TRÊN ĐƯỜNG ĐẾN TEXAS UPS</span> đang chuyển kiện hàng tới kho của công ty ở Texas</p>
+                        <span class="text-[12px] text-[#999]">📅 2/21/2023 9:49:36 AM</span>
                     </div>
-                </v-timeline-item>
-                <v-timeline-item dot-color="pink" size="small">
-                    <div class="d-flex">
-                        <strong class="me-4">5pm</strong>
-                        <div>
-                            <strong>New Icon</strong>
-                        </div>
+                    <div class="custom-content flex-col sm:flex-row">
+                        <p class="text-[16px]"><span class="text-[#3c8dbc]">MỚI TẠO</span> Label đã tạo thành công, UPS chưa nhận được kiện hàng</p>
+                        <span class="text-[12px] text-[#999]">📅 2/21/2023 9:49:36 AM</span>
                     </div>
-                </v-timeline-item>
-
-                <v-timeline-item dot-color="teal-lighten-3" size="small">
-                    <div class="d-flex">
-                        <strong class="me-4">3-4pm</strong>
-                        <div>
-                            <strong>Design Stand Up</strong>
-                        </div>
-                    </div>
-                </v-timeline-item>
-                <v-timeline-item dot-color="teal-lighten-3" size="small">
-                    <div class="d-flex">
-                        <strong class="me-4">9-11am</strong>
-                        <div>
-                            <strong>Finish Home Screen</strong>
-                            <!-- <div class="text-caption">
-                                Web App
-                            </div> -->
-                        </div>
-                    </div>
-                </v-timeline-item>
-            </v-timeline>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -107,3 +63,29 @@ export default {
     }
 }
 </script>
+<style scoped>
+.line {
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-left: 5px solid #ddd;
+}
+.circle {
+    width: 40px;
+    height: 40px;
+    clip-path: circle(50% at 50% 50%);
+    background-color: #0073b7;
+    transform: translateX(-60%);
+    line-height: 40px;
+    text-align: center;
+}
+.custom-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px rgb(190, 185, 185) solid;
+}
+</style>
