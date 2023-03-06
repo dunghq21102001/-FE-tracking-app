@@ -66,7 +66,7 @@
         <v-avatar class="cursor-pointer" v-click-outside-element="close" @click="openMenu = !openMenu"
           image="https://t3.ftcdn.net/jpg/02/09/37/00/360_F_209370065_JLXhrc5inEmGl52SyvSPeVB23hB6IjrR.jpg"
           size="40"></v-avatar>
-        <h1 class="text-white ml-2">
+        <h1 class="text-white ml-2 hidden sm:block">
           <!-- {{ user.email ? user.email : "Guest" }} -->
           {{ authStore.getUser.email ? authStore.getUser.email : "Guest" }}
         </h1>
@@ -80,26 +80,26 @@
               w-[200px]
             ">
           <ul class="flex flex-col justify-around items-center w-full text-center text-white">
-            <li v-if="haveAdminRole" class="hover:bg-gray-400 cursor-pointer my-2 px-1 py-2 w-full">
-              <router-link :to="{ name: 'users-management' }">
+            <router-link class="hover:bg-gray-400 hover:text-white w-full" :to="{ name: 'users-management' }" v-if="haveAdminRole" >
+              <li class="cursor-pointer my-2 px-1 py-2 w-full">
                 {{ $t('Dashboard') }}
-              </router-link>
-            </li>
-            <li class="hover:bg-gray-400 cursor-pointer my-2 px-1 py-2 w-full">
-              <router-link :to="{ name: 'profile' }">
+              </li>
+            </router-link>
+            <router-link class="hover:bg-gray-400 hover:text-white w-full" :to="{ name: 'profile' }">
+              <li class="cursor-pointer my-2 px-1 py-2 w-full">
                 {{ $t('Profile') }}
-              </router-link>
-            </li>
-            <li class="hover:bg-gray-400 cursor-pointer my-2 px-1 py-2 w-full">
-              <router-link :to="{ name: 'receiver' }">
+              </li>
+            </router-link>
+            <router-link class="hover:bg-gray-400 hover:text-white w-full" :to="{ name: 'receiver' }">
+              <li class="cursor-pointer my-2 px-1 py-2 w-full">
                 {{ $t('Recipient List') }}
-              </router-link>
-            </li>
-            <li class="hover:bg-gray-400 cursor-pointer my-2 px-1 py-2 w-full">
-              <router-link :to="{ name: 'tracking-number' }">
+              </li>
+            </router-link>
+            <router-link class="hover:bg-gray-400 hover:text-white w-full" :to="{ name: 'tracking-number' }">
+              <li class="cursor-pointer my-2 px-1 py-2 w-full">
                 {{ $t('Tracking List') }}
-              </router-link>
-            </li>
+              </li>
+            </router-link>
             <li class="hover:bg-gray-400 cursor-pointer my-2 px-1 py-2 w-full text-white" @click="logout">
               {{ $t('Logout') }}
             </li>
