@@ -17,6 +17,7 @@ export default class MenuFunc {
             { name: 'Service', title: 'Service', url: 'service-management' },
             { name: 'Guild', title: 'Guild', url: 'question-management' },
             { name: 'Request', title: 'Request', url: 'request-management' },
+            { name: 'Post', title: 'Post', url: 'post-management' },
         ]
     }
 
