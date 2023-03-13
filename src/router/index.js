@@ -22,7 +22,9 @@ import AssignRoles from '../views/administration/AssignRoles.vue'
 import ServiceManagement from '../views/administration/ServiceManagement.vue'
 import QuestionManagement from '../views/administration/QuestionManagement.vue'
 import RequestManagement from '../views/administration/RequestManagement.vue'
+import PostManagement from '../views/administration/PostManagement.vue'
 import Error from '../views/Error.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 import checkLogin from '../middleware/checkLogin'
 import auth from '../middleware/auth'
 const router = createRouter({
@@ -223,6 +225,14 @@ const router = createRouter({
             middleware: auth
           },
         },
+        {
+          path: '/post-management',
+          name: 'post-management',
+          component: PostManagement,
+          meta: {
+            middleware: auth
+          },
+        },
       ]
     },
     {
@@ -233,6 +243,15 @@ const router = createRouter({
         // middleware: 
       }
     },
+    {
+      // path: "*",
+      path: "/:catchAll(.*)",
+      name: "not-found",
+      component: PageNotFound,
+      meta: {
+        middleware: auth
+      }
+    }
   ]
 })
 

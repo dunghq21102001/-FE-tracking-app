@@ -88,7 +88,7 @@
                 <span @click="close" class="cursor-pointer">❌</span>
                 <Form class="flex flex-col justify-around items-center" @submit="submitForm">
                     <div class="flex flex-col mb-4">
-                        <label :title="FormData.email" :for="FormData.email">
+                        <label title="Email" for="Email">
                             Email <span class="text-red-500">*</span>
                             <ErrorMessage name="email" class="text-red-500" />
                         </label>
@@ -98,10 +98,10 @@
                             border-[1px] border-solid border-gray-300
                             focus:outline-none
                             p-3
-                            " :id="FormData.email" v-model="FormData.email" :rules="validateEmail" />
+                            " id="Email" v-model="FormData.email" :rules="validateEmail" />
                     </div>
                     <div v-if="isCreate" class="flex flex-col mb-4">
-                        <label :title="FormData.password" :for="FormData.password">
+                        <label :title="$t('Password')" :for="$t('Password')">
                             {{$t('Password')}} <span class="text-red-500">*</span>
                             <ErrorMessage name="password" class="text-red-500" />
                         </label>
@@ -111,7 +111,7 @@
                                 border-[1px] border-solid border-gray-300
                                 focus:outline-none
                                 p-3
-                                " :id="FormData.password" v-model="FormData.password" :rules="validatePassword" />
+                                " :id="$t('Password')" v-model="FormData.password" :rules="validatePassword" />
                     </div>
                     <div class="flex flex-wrap pb-4 w-full" v-if="isCreate">
                         <span>{{$t('Role')}} <span class="text-red-500">*</span>:</span>

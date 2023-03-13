@@ -61,7 +61,7 @@
                 <span @click="close" class="cursor-pointer">❌</span>
                 <Form class="flex flex-col justify-around items-center" @submit="submitForm">
                     <div class="flex flex-col mb-4">
-                        <label :title="formData.question" :for="formData.question">
+                        <label :title="$t('Question')" :for="$t('Question')">
                             {{ $t('Question') }} <span class="text-red-500">*</span>
                             <ErrorMessage name="question" class="text-red-500" />
                         </label>
@@ -71,17 +71,17 @@
                                     border-[1px] border-solid border-gray-300
                                     focus:outline-none
                                     p-3
-                                    " :id="formData.question" v-model="formData.question" 
+                                    " :id="$t('Question')" v-model="formData.question" 
                                     :rules="validateEmpty"/>
                     </div>
                     <div class="flex flex-col mb-4">
-                        <label :title="formData.answer" :for="formData.answer">
+                        <label :title="$t('Answer')" :for="$t('Answer')">
                             {{ $t('Answer') }} <span class="text-red-500">*</span>
                             <ErrorMessage name="answer" class="text-red-500" />
                         </label>
                         <Field name="answer" type="text" v-slot="{ field, errors }" class="
                                 
-                            " :id="formData.answer" v-model="formData.answer"
+                            " :id="$t('Answer')" v-model="formData.answer"
                             :rules="validateEmpty">
                             <textarea class="w-[240px] md:w-[360px]
                                 mx-3

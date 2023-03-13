@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     getCurrentLang() {
-      this.$i18n.locale = this.langStore.getLocate 
+      this.$i18n.locale = this.langStore.getLocate
     }
   },
   computed: {
@@ -33,7 +33,8 @@ export default {
       && currentRouteName != 'assign-roles'
       && currentRouteName != 'service-management'
       && currentRouteName != 'question-management'
-      && currentRouteName != 'request-management'" />
+      && currentRouteName != 'request-management'
+      && currentRouteName != 'post-management'" />
   </main>
 </template>
 

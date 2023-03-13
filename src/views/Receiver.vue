@@ -85,7 +85,7 @@
           <span @click="isShow = false" class="cursor-pointer">❌</span>
           <Form class="flex flex-col justify-around items-center" @submit="createReceiver">
             <div class="flex flex-col mb-4">
-              <label :title="formSubmit.first_name" :for="formSubmit.first_name">
+              <label :title="$t('First Name')" :for="$t('First Name')">
                 {{ $t('First Name') }} 
                 <!-- <span class="text-red-500">*</span> -->
               </label>
@@ -95,10 +95,10 @@
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
                     p-3
-                  " :id="formSubmit.first_name" v-model="formSubmit.first_name" />
+                  " :id="$t('First Name')" v-model="formSubmit.first_name" />
             </div>
             <div class="flex flex-col mb-4">
-              <label :title="formSubmit.last_name" :for="formSubmit.last_name">
+              <label :title="$t('Last Name')" :for="$t('Last Name')">
                 {{ $t('Last Name') }} <span class="text-red-500">*</span>
               <ErrorMessage class="text-red-500" name="last_name"/>
               </label>
@@ -108,11 +108,11 @@
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
                     p-3
-                  " :id="formSubmit.last_name" v-model="formSubmit.last_name" 
+                  " :id="$t('Last Name')" v-model="formSubmit.last_name" 
                   :rules="validateEmpty"/>
             </div>
             <div class="flex flex-col mb-4">
-              <label :title="formSubmit.phone1" :for="formSubmit.phone1">
+              <label :title="$t('Phone 1')" :for="$t('Phone 1')">
                 {{ $t('Phone 1') }} 
                 <!-- <span class="text-red-500">*</span> -->
                 <ErrorMessage name="phone1" class="text-red-500" />
@@ -123,10 +123,10 @@
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
                     p-3
-                  " :id="formSubmit.phone1" v-model="formSubmit.phone1" :rules="validatePhone" />
+                  " :id="$t('Phone 1')" v-model="formSubmit.phone1" :rules="validatePhone" />
             </div>
             <div class="flex flex-col mb-4">
-              <label :title="formSubmit.phone2" :for="formSubmit.phone2">
+              <label :title="$t('Phone 2')" :for="$t('Phone 2')">
                 {{ $t('Phone 2') }} 
                 <!-- <span class="text-red-500">*</span> -->
                 <ErrorMessage name="phone2" class="text-red-500" />
@@ -137,10 +137,10 @@
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
                     p-3
-                  " :id="formSubmit.phone2" v-model="formSubmit.phone2" :rules="validatePhone" />
+                  " :id="$t('Phone 2')" v-model="formSubmit.phone2" :rules="validatePhone" />
             </div>
             <div class="flex flex-col mb-4">
-              <label :title="formSubmit.address" :for="formSubmit.address">
+              <label :title="$t('Address')" :for="$t('Address')">
                 {{ $t('Address') }} <span class="text-red-500">*</span>
                 <ErrorMessage class="text-red-500" name="address"/></label>
               <Field name="address" type="text" class="
@@ -149,11 +149,11 @@
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
                     p-3
-                  " :id="formSubmit.address" v-model="formSubmit.address" 
+                  " :id="$t('Address')" v-model="formSubmit.address" 
                   :rules="validateEmpty"/>
             </div>
             <div class="flex flex-col mb-4">
-              <label :title="formSubmit.city" :for="formSubmit.city">
+              <label :title="$t('City')" :for="$t('City')">
                 {{ $t('City') }} <span class="text-red-500">*</span>
                 <ErrorMessage class="text-red-500" name="city"/></label>
               <Field name="city" type="text" class="
@@ -162,11 +162,11 @@
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
                     p-3
-                  " :id="formSubmit.city" v-model="formSubmit.city" 
+                  " :id="$t('City')" v-model="formSubmit.city" 
                   :rules="validateEmpty"/>
             </div>
             <div class="flex flex-col mb-4">
-              <label :title="formSubmit.country" :for="formSubmit.country">
+              <label :title="$t('Nation')" :for="$t('Nation')">
                 {{ $t('Nation') }} <span class="text-red-500">*</span>
                 <ErrorMessage class="text-red-500" name="country"/></label>
               <Field name="country" type="text" class="
@@ -175,7 +175,7 @@
                     border-[1px] border-solid border-gray-300
                     focus:outline-none
                     p-3
-                  " :id="formSubmit.country" v-model="formSubmit.country" 
+                  " :id="$t('Nation')" v-model="formSubmit.country" 
                   :rules="validateEmpty"/>
             </div>
             <button type="submit" class="rounded-sm text-white px-7 py-1 max-h-10 bg-green-600">
