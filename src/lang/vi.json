@@ -61,6 +61,7 @@
     "Note": "Ghi Chú",
     "List": "Danh Sách",
     "Label": "Nhãn",
+    "Author": "Tác Giả",
     "Shipping Label": "Nhãn Vận Chuyển",
     "From Company": "Từ Công Ty",
     "To Company": "Đến Công Ty",
@@ -86,6 +87,7 @@
     "Assign Roles": "Cấp Quyền",
     "Carrier": "Người Vận Chuyển",
     "License Plates": "Biển Số Xe",
+    "View": "Lượt Xem",
     "Post": "Bài Viết",
     "Action": "Hành Động",
     "Not Found": "Không Tìm Thấy",
@@ -109,5 +111,7 @@
     "This recipient cannot be deleted because it exists in tracking": "Không thể xoá người nhận này vì đang sử dụng trong tracking",
     "You are not authorized to take action": "Bạn Không Có Quyền Thực Hiện Hành Động Này",
     "File cannot be larger than -MB": "File không thể lớn hơn {0}MB",
-    "Choose at least 1 image to create a post": "Chọn Ít Nhất 1 Hình Ảnh Để Tạo Bài Viết"
+    "Choose at least 1 image": "Chọn Ít Nhất 1 Hình Ảnh",
+    "Can't exceed - characters": "Không Thể Vượt Quá {0} Kí Tự",
+    "Do not exceed the maximum number of characters": "Không Được Vượt Quá Số Kí Tự Tối Đa Cho Phép"
 }

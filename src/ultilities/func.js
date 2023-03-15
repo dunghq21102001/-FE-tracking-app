@@ -14,5 +14,8 @@ class func {
             name: permission
         });
     }
+    static getLocalTime(time) {
+        return new Date(time).toLocaleString()
+    }
 }
 export default func

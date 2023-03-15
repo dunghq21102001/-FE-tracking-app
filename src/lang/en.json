@@ -64,6 +64,7 @@
     "Note": "Note",
     "List": "List",
     "Label": "Label",
+    "Author": "Author",
     "Shipping Label": "Shipping Label",
     "Add": "Add",
     "Update": "Update",
@@ -86,6 +87,7 @@
     "Wrong Format": "Wrong Format",
     "Assign Roles": "Assign Roles",
     "Carrier": "Carrier",
+    "View": "View",
     "License Plates": "License Plates",
     "Action": "Action",
     "Not Found": "Not Found",
@@ -109,5 +111,7 @@
     "This recipient cannot be deleted because it exists in tracking": "This recipient cannot be deleted because it exists in tracking",
     "You are not authorized to take action": "You are not authorized to take action",
     "File cannot be larger than -MB": "File cannot be larger than {0}MB",
-    "Choose at least 1 image to create a post": "Choose at least 1 image to create a post"
+    "Choose at least 1 image": "Choose at least 1 image",
+    "Can't exceed - characters": "Can't exceed {0} characters",
+    "Do not exceed the maximum number of characters": "Do not exceed the maximum number of characters"
 }

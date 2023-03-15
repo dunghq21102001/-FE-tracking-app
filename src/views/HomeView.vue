@@ -4,6 +4,7 @@
     <slider></slider>
     <service></service>
     <BOL></BOL>
+    <PostList/>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import Slider from "../components/Slider.vue";
 import Service from "../components/Service.vue";
 import BOL from '../components/BOL.vue';
 import { useAuthStore } from "../store/user";
+import PostList from "../components/PostList.vue";
 export default {
   setup() {
     const authStore = useAuthStore();
@@ -20,7 +22,8 @@ export default {
   components: {
     Slider,
     Service,
-    BOL
+    BOL,
+    PostList
   },
   data() {
     return {};
