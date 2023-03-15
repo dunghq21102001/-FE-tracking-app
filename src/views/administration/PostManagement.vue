@@ -13,6 +13,9 @@
         <table class="w-full text-center">
             <thead class="sticky top-0 left-0 bg-[#f37070]">
                 <tr>
+                    <th>
+                        #
+                    </th>
                     <th :title="field.title" v-for="(field, i) in fields" :key="i">
                         {{ $t(field.name) }}
                     </th>
@@ -22,7 +25,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="p in postList" :key="p.id">
+                <tr v-for="(p, i) in postList" :key="p.id">
+                    <td>
+                        <div class="w-[50px]">{{ i + 1 }}</div>
+                    </td>
                     <td>
                         <div class="w-[150px]">{{ p.title }}</div>
                     </td>
@@ -37,7 +43,8 @@
                     </td>
                     <td>
                         <div class="w-[350px] flex flex-wrap">
-                            <img class="h-[100px] m-2" v-for="img in p.images" :key="img.id" v-lazy="filePath + img.file_path" />
+                            <img class="h-[100px] m-2" v-for="img in p.images" :key="img.id"
+                                v-lazy="filePath + img.file_path" />
                         </div>
                     </td>
                     <td>
@@ -65,15 +72,15 @@
 
     <!-- show modal -->
     <div v-if="isShow" class="fixed
-    z-10
-    top-0
-    left-0
-    right-0
-    bottom-0
-    bg-black/30
-    flex
-    justify-center
-    items-center">
+            z-10
+            top-0
+            left-0
+            right-0
+            bottom-0
+            bg-black/30
+            flex
+            justify-center
+            items-center">
         <div class="w-[90%] md:w-[60%] bg-white rounded-lg p-6 h-[90vh] overflow-y-scroll">
             <span @click="close" class="cursor-pointer">❌</span>
             <Form class="flex flex-col justify-around items-center" @submit="submitForm">
@@ -83,12 +90,12 @@
                         <ErrorMessage name="title" class="text-red-500" />
                     </label>
                     <Field name="title" type="text" class="
-                    w-[240px] md:w-[360px]
-                    mx-3
-                    border-[1px] border-solid border-gray-300
-                    focus:outline-none
-                    p-3
-                    " :id="$t('Title')" v-model="formData.title" :rules="validateEmpty" />
+                            w-[240px] md:w-[360px]
+                            mx-3
+                            border-[1px] border-solid border-gray-300
+                            focus:outline-none
+                            p-3
+                            " :id="$t('Title')" v-model="formData.title" :rules="validateEmpty" />
                 </div>
                 <div class="flex flex-col mb-4">
                     <label :title="$t('Description')" :for="$t('Description')">
@@ -96,12 +103,12 @@
                         <ErrorMessage name="description" class="text-red-500" />
                     </label>
                     <Field name="description" type="text" class="
-                    w-[240px] md:w-[360px]
-                    mx-3
-                    border-[1px] border-solid border-gray-300
-                    focus:outline-none
-                    p-3
-                    " :id="$t('Description')" v-model="formData.description" :rules="validateEmpty" />
+                            w-[240px] md:w-[360px]
+                            mx-3
+                            border-[1px] border-solid border-gray-300
+                            focus:outline-none
+                            p-3
+                            " :id="$t('Description')" v-model="formData.description" :rules="validateEmpty" />
                 </div>
                 <div class="flex flex-col mb-4">
                     <label :title="$t('Content')" :for="$t('Content')">
@@ -110,13 +117,12 @@
                     </label>
                     <Field name="content" type="text" v-slot="{ field, errors }" class="
                                 
-                            " :id="$t('Content')" v-model="formData.content"
-                            :rules="validateEmpty">
-                            <textarea class="w-[240px] md:w-[360px]
-                                mx-3
-                                border-[1px] border-solid border-gray-300
-                                focus:outline-none
-                                p-3" v-bind="field" rows="6" name="content"></textarea>
+                                    " :id="$t('Content')" v-model="formData.content" :rules="validateEmptyV2">
+                        <textarea class="w-[240px] md:w-[360px]
+                                        mx-3
+                                        border-[1px] border-solid border-gray-300
+                                        focus:outline-none
+                                        p-3" v-bind="field" rows="6" name="content"></textarea>
                     </Field>
                 </div>
                 <div class="flex flex-col mb-4">
@@ -125,22 +131,22 @@
                         <ErrorMessage name="summary" class="text-red-500" />
                     </label>
                     <Field name="summary" type="text" class="
-                    w-[240px] md:w-[360px]
-                    mx-3
-                    border-[1px] border-solid border-gray-300
-                    focus:outline-none
-                    p-3
-                    " :id="$t('Summary')" v-model="formData.summary" :rules="validateEmpty" />
+                            w-[240px] md:w-[360px]
+                            mx-3
+                            border-[1px] border-solid border-gray-300
+                            focus:outline-none
+                            p-3
+                            " :id="$t('Summary')" v-model="formData.summary" :rules="validateEmpty" />
                 </div>
-                <div class="flex mb-4">
+                <div class="flex mb-4" v-if="formData.files.length !== 3">
                     <label class="cursor-pointer bg-[#289ae7] rounded-lg p-2" :title="$t('Image')" :for="$t('Image')">
                         🖼️ {{ $t('Choose', [$t('Image')]) }}</label>
                     <input multiple class="hidden" type="file" :id="$t('Image')" @change="fileChange">
                 </div>
                 <div class="w-[240px] md:w-[360px] flex flex-wrap justify-center items-center mb-4" v-if="listShow">
                     <div class="relative mx-1" v-for="(image, index) in listShow">
-                    <img class="h-[100px]" :src="image" />
-                    <button class="absolute top-0 right-0" @click="removeImage(index)">❌</button>
+                        <img class="h-[100px]" :src="image" />
+                        <button class="absolute top-0 right-0" @click="removeImage(index)">❌</button>
                     </div>
                 </div>
                 <button v-if="isCreate" @click="createPost" class="rounded-lg text-white px-7 py-1 max-h-10 bg-[#338bad]">
@@ -203,13 +209,29 @@ export default {
                     }
                 })
         },
-        showCreate() { 
+        showCreate() {
             this.isShow = true
             this.isCreate = true
-        }, showUpdate(id) { },
+        }, 
+        showUpdate(id) {
+            this.isUpdate = true
+            this.isShow = true
+            this.postSelected = this.postList.find(p => p.id == id)
+            this.formData.title = this.postSelected.title
+            this.formData.description = this.postSelected.description
+            this.formData.content = this.postSelected.content
+            this.formData.summary = this.postSelected.summary
+            // this.formData.files = this.postSelected.images
+        },
         async createPost() {
-            if(this.formData.files.length == 0) {
-                return swal2.error(this.$t('Choose at least 1 image to create a post'))
+            if(this.formData.title.length>255
+            || this.formData.description.length > 255
+            || this.formData.content.length > 2000
+            || this.formData.summary.length > 255){
+                return swal2.error(this.$t("Do not exceed the maximum number of characters"))
+            }
+            if (this.formData.files.length == 0) {
+                return swal2.error(this.$t('Choose at least 1 image'))
             }
             let fd = new FormData()
             this.formData.files.forEach(img => {
@@ -227,22 +249,83 @@ export default {
                     this.close()
                 })
                 .catch(err => {
-                    if(err.response.data.message 
-                    && err.response.data.message == 'You are not allowed'){
+                    if (err.response.data.message
+                        && err.response.data.message == 'You are not allowed') {
                         swal2.error(`${this.$t('You are not authorized to take action')}`)
                         return this.$router.push({ name: "error" });
                     }
-                    return swal2.error(this.$t('Something Went Wrong') + ', ' + this.$t('Please -', [$t('Try Again')]))
+                    return swal2.error(this.$t('Something Went Wrong') + ', ' + this.$t('Please -', [this.$t('Try Again')]))
                 })
-         }, updatePost() { },
-        deletePost() { }, submitForm(){},
-        validateEmpty(value) {
-            if(!value) {
-            return `${this.$t('This field cannot be left blank')}`
+        }, 
+        async updatePost() { 
+            if(this.formData.title.length>255
+            || this.formData.description.length > 255
+            || this.formData.content.length > 2000
+            || this.formData.summary.length > 255){
+                return swal2.error(this.$t("Do not exceed the maximum number of characters"))
             }
+            if (this.formData.files.length == 0) {
+                return swal2.error(this.$t('Choose at least 1 image'))
+            }
+            let fdu = new FormData()
+            this.formData.files.forEach(img => {
+                fdu.append('files[]', img)
+            })
+            fdu.append('title', this.formData.title)
+            fdu.append('description', this.formData.description)
+            fdu.append('content', this.formData.content)
+            fdu.append('summary', this.formData.summary)
+            fdu.append("_method", "put")
+            await service.update(fdu, this.postSelected.id)
+            .then(res => {
+                    swal2.success(`${this.$t('Update', [this.$t('Post')])} ${this.$t('Successfully')}`)
+                    this.page = 1
+                    this.getList()
+                    this.close()
+                })
+                .catch(err => {
+                    if (err.response.data.message
+                        && err.response.data.message == 'You are not allowed') {
+                        swal2.error(`${this.$t('You are not authorized to take action')}`)
+                        return this.$router.push({ name: "error" });
+                    }
+                    return swal2.error(this.$t('Something Went Wrong') + ', ' + this.$t('Please -', [this.$t('Try Again')]))
+                })
+        },
+        async deletePost(id) {
+            swal2.confirm(`${this.$t('Delete')}`, `${this.$t('Are you sure you want to')}`).then((result) => {
+                if (result.value) {
+                    service.delete(id)
+                        .then(res => {
+                            swal2.success(`${this.$t('Delete')} ${this.$t('Successfully')}`)
+                            this.getList()
+                            this.page = 1
+                        })
+                        .catch(err => {
+                            if (err.response.data.message
+                                && err.response.data.message == 'You are not allowed') {
+                                swal2.error(`${this.$t('You are not authorized to take action')}`)
+                                this.$router.push({ name: "error" });
+                            }
+                        })
+                }
+            });
+        }, submitForm() { },
+        validateEmpty(value) {
+            if (!value) {
+                return `${this.$t('This field cannot be left blank')}`
+            }
+            if (value.length > 255) return `${this.$t("Can't exceed - characters", ['255'])}`
             return true;
         },
-        close(){
+        validateEmptyV2(value) {
+            if (!value) {
+                return `${this.$t('This field cannot be left blank')}`
+            }
+            if (value.length > 2000) return `${this.$t("Can't exceed - characters", ['2000'])}`
+            return true;
+        },
+        close() {
             this.isShow = false
             this.isCreate = false
             this.isUpdate = false
@@ -253,38 +336,38 @@ export default {
                 summary: '',
                 files: []
             }
+            this.listShow = []
         },
         async clickCallback(pageNum) {
             await axios.get(API.post + `?page=${pageNum}`)
                 .then(res => this.postList = res.data.data)
         },
-    
-        fileChange(e){
-        const file = e.target.files[0]
-        console.log(file);
-        // if(file.size > 2000000)  return swal2.error(this.$t('File cannot be larger than -MB', ['2']))
 
-        // this.formData.files = file
-        // file.name
-        // file.type
-            if(file.size > 4000000) return swal2.error(this.$t('File cannot be larger than -MB', ['4']))
-            if(file.type == 'image/jpeg' 
-            || file.type == 'image/png' 
-            || file.type == 'image/jpg'){
+        fileChange(e) {
+            const file = e.target.files[0]
+            // if(file.size > 2000000)  return swal2.error(this.$t('File cannot be larger than -MB', ['2']))
+
+            // this.formData.files = file
+            // file.name
+            // file.type
+            if (file.size > 4000000) return swal2.error(this.$t('File cannot be larger than -MB', ['4']))
+            if (file.type == 'image/jpeg'
+                || file.type == 'image/png'
+                || file.type == 'image/jpg') {
                 let files = e.target.files || e.dataTransfer.files;
                 if (!files.length) return;
                 this.createImage(files);
                 this.formData.files.push(e.target.files[0])
-                
+
             }
         },
         createImage(files) {
             let vm = this;
             for (let index = 0; index < files.length; index++) {
                 let reader = new FileReader();
-                reader.onload = function(event) {
-                const imageUrl = event.target.result;
-                vm.listShow.push(imageUrl);
+                reader.onload = function (event) {
+                    const imageUrl = event.target.result;
+                    vm.listShow.push(imageUrl);
                 }
                 reader.readAsDataURL(files[index]);
             }
@@ -301,8 +384,18 @@ th {
     padding: 10px 0;
 }
 
+thead {
+    transform: translateY(-1px);
+}
+
 .pagination {
     justify-content: space-around;
     margin-top: 20px;
+}
+
+th,
+td,
+tr {
+    border: 1px solid rgb(161, 161, 161);
 }
 </style>

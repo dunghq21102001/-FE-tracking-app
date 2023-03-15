@@ -87,6 +87,7 @@ export default {
                     Service.deleteRequest(id)
                         .then(res => {
                             this.getList()
+                            this.page = 1
                             swal2.success(`${this.$t('Delete')} ${this.$t('Successfully')}`)
                         })
                         .catch(err => {

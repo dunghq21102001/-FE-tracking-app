@@ -14,9 +14,19 @@ class post {
             .post(API.post, data)
     }
 
+    static detail(id) {
+        return axios
+            .get(API.post + '/' + id)
+    }
+
+    static increaseView(id) {
+        return axios
+            .put(API.post + '/increase-view/' + id)
+    }
+
     static update(data, id) {
         return axios
-            .put(API.post + '/' + id, data)
+            .post(API.post + '/update/' + id, data)
     }
 
     static delete(id) {

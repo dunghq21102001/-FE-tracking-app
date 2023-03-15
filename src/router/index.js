@@ -14,6 +14,7 @@ import trackingNumber from '../views/trackingNumber.vue'
 import trackingNumberCreate from '../views/trackingNumberCreate.vue'
 import trackingNumberUpdate from '../views/trackingNumberUpdate.vue'
 import shippingLabel from '../views/ShippingLabel.vue'
+import PostDetail from '../views/PostDetail.vue'
 import Administrator from '../views/Administrator.vue'
 import UsersManagement from '../views/administration/UsersManagement.vue'
 import RolesManagement from '../views/administration/RolesManagement.vue'
@@ -157,6 +158,14 @@ const router = createRouter({
       path: '/shipping-label/:id',
       name: 'shipping-label',
       component: shippingLabel,
+      meta: {
+        middleware: auth
+      }
+    },
+    {
+      path: '/post-detail/:id',
+      name: 'post-detail',
+      component: PostDetail,
       meta: {
         middleware: auth
       }
